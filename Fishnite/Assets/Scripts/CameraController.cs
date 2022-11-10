@@ -16,10 +16,9 @@ public class CameraController : MonoBehaviour
     void LateUpdate() 
     {
         float desiredAngle = boat.transform.eulerAngles.y;
-        Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-        transform.position = boat.transform.position - (rotation * offset);
-        //transform.LookAt(boat.transform);
-        //transform.position = boat.transform.position + offset;
+        Quaternion rotation = Quaternion.Euler(-15, desiredAngle, 0);
+        transform.position = boat.transform.position - (rotation * offset) - offset;
+        transform.LookAt(boat.transform);
     }
 
     // Update is called once per frame
