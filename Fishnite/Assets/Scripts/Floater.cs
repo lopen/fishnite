@@ -7,9 +7,9 @@ public class Floater : MonoBehaviour
     public Rigidbody rigidbody;
     public float depthBeforeSubmerged = 1f;
     public float displacementAmount = 3f;
-    public int floaterCounter = 1;
-    public float waterDrag = 0.99f;
-    public float waterADrag = 0.5f;
+    public int floaterCounter = 4;
+    public float waterDrag = 2f;
+    public float waterADrag = 4f;
 
     // Start is called before the first frame update
     void Start()
