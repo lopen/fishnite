@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
         float desiredAngle = boat.transform.eulerAngles.y;
         Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
         transform.position = boat.transform.position - (rotation * offset);
-        transform.LookAt(boat.transform);
+        //transform.LookAt(boat.transform);
         //transform.position = boat.transform.position + offset;
     }
 

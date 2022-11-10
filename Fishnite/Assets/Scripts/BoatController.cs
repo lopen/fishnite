@@ -5,47 +5,40 @@ using UnityEngine;
 public class BoatController : MonoBehaviour
 {
     public float speed = 3f; 
+    public float turnSpeed = 3f;
+    public float topSpeed = 10f;
+
     Vector3 movement;
+    Vector3 turnMovement;
     Rigidbody boatRigidbody;
+    Rigidbody rudderRigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
         boatRigidbody = GetComponent<Rigidbody>();
+        rudderRigidbody = GameObject.FindWithTag("Rudder").GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-
-        move(h, v);
-        turn();
+        float lr = Input.GetAxisRaw("Horizontal"); // left right, lb
+        float fb = Input.GetAxisRaw("Vertical");   // forward backward, fb
+       
+        move(fb);
+        turn(lr);
     }
 
-    void move(float h, float v)
+    void move(float fb)
     {
-        movement.Set(h, 0f, v);
-
-        movement = movement.normalized * speed * Time.deltaTime;
-
-        boatRigidbody.MovePosition(transform.position + movement);
+        movement.Set(0f, 0f, fb);
+        boatRigidbody.AddForce(movement * speed);
     }
 
-    void turn()
+    void turn(float lr)
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-        } 
-        else if (Input.GetKey(KeyCode.A)) 
-        {
-        }
-        else if (Input.GetKey(KeyCode.S)) 
-        {
-        }
-        else if (Input.GetKey(KeyCode.D)) 
-        {
-        }
+        turnMovement.Set(lr, 0f, 0f);
+        boatRigidbody.AddForce(turnMovement * turnSpeed);
     }
 }
