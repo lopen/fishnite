@@ -7,9 +7,9 @@ public class WaveManager : MonoBehaviour
 
     public static WaveManager instance;
 
-    public Vector4 WaveA = new Vector4(1f, 0f, 0.5f, 10f);
-    public Vector4 WaveB = new Vector4(0f, 1f, 0.25f, 20f);
-    public Vector4 WaveC = new Vector4(1f, 1f, 0.15f, 10f);
+    public Vector4 WaveA = new Vector4(0.1f, 1f, 0.15f, 5f);
+    public Vector4 WaveB = new Vector4(0.1f, 0f, 0.15f, 10f);
+    public Vector4 WaveC = new Vector4(0.1f, 0.5f, 0.15f, 15f);
 
     // Start is called before the first frame update
     void Start()

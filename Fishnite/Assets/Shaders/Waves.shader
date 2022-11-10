@@ -7,9 +7,9 @@ Shader "Custom/Waves"
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
 
-        _WaveA ("Wave A (direction, steepness, wavelength)", Vector) = (1, 0, 0.5, 10)
-        _WaveB ("Wave B", Vector) = (0, 1, 0.25, 20)
-        _WaveC ("Wave C", Vector) = (1, 1, 0.15, 10)
+        _WaveA ("Wave A (direction, steepness, wavelength)", Vector) = (0.1, 1, 0.15, 5)
+        _WaveB ("Wave B", Vector) = (0.1, 0, 0.15, 10)
+        _WaveC ("Wave C", Vector) = (0.1, 0.5, 0.15, 15)
     }
     SubShader
     {
