@@ -11,13 +11,13 @@ public class BoatController : MonoBehaviour
     Vector3 movement;
     Vector3 turnMovement;
     Rigidbody boatRigidbody;
-    Rigidbody rudderRigidbody;
+    //Rigidbody rudderRigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
         boatRigidbody = GetComponent<Rigidbody>();
-        rudderRigidbody = GameObject.FindWithTag("Rudder").GetComponent<Rigidbody>();
+        //rudderRigidbody = GameObject.FindWithTag("Rudder").GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -26,19 +26,25 @@ public class BoatController : MonoBehaviour
         float lr = Input.GetAxisRaw("Horizontal"); // left right, lb
         float fb = Input.GetAxisRaw("Vertical");   // forward backward, fb
        
-        move(fb);
-        turn(lr);
+        if (fb != 0)
+        {
+            move(fb);
+        }
+        
+        if (lr != 0)
+        {
+            turn(lr);
+        }
     }
 
     void move(float fb)
     {
-        movement.Set(0f, 0f, fb);
-        boatRigidbody.AddForce(movement * speed);
+        boatRigidbody.AddForce(this.transform.forward * fb * speed);
     }
 
     void turn(float lr)
     {
         turnMovement.Set(lr, 0f, 0f);
-        boatRigidbody.AddForce(turnMovement * turnSpeed);
+        boatRigidbody.AddTorque(this.transform.up * turnSpeed  * lr);
     }
 }

@@ -7,6 +7,7 @@ Shader "Custom/Waves"
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
 
+        // Wave type beat
         _WaveA ("Wave A (direction, steepness, wavelength)", Vector) = (0.1, 1, 0.15, 5)
         _WaveB ("Wave B", Vector) = (0.1, 0, 0.15, 10)
         _WaveC ("Wave C", Vector) = (0.1, 0.5, 0.15, 15)
@@ -35,7 +36,7 @@ Shader "Custom/Waves"
         half _Metallic;
         fixed4 _Color;
         float4 _WaveA, _WaveB, _WaveC;
-        
+            
         float3 GerstnerWave (
             float4 wave, float3 p, inout float3 tangent, inout float3 binormal
         ) {
