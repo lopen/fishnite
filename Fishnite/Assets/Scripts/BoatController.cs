@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoatController : MonoBehaviour
 {
-    public float speed = 3f; 
+    public float speed = 5f; 
     public float turnSpeed = 3f;
     public float topSpeed = 10f;
 

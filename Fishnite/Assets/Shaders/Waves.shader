@@ -47,7 +47,7 @@ Shader "Custom/Waves"
             float2 d                = normalize(wave.xy);
             float  f                = k * (dot(d, p.xz) - c * _Time.y);
             float  a                = steepness / k;
-
+            
             tangent += float3(
                 -d.x * d.x * (steepness * sin(f)),
                 d.x * (steepness * cos(f)),
@@ -59,7 +59,7 @@ Shader "Custom/Waves"
                 d.y * (steepness * cos(f)),
                 -d.y * d.y * (steepness * sin(f))
             );
-
+            
             return float3(
                 d.x * (a * cos(f)),
                 a * sin(f),
