@@ -10,15 +10,22 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector3(transform.position.x, 4, -8);
+        transform.rotation = Quaternion.Euler(15, 0, 0);
         offset = boat.transform.position - transform.position;
     }
 
     void LateUpdate() 
     {
         float desiredAngle = boat.transform.eulerAngles.y;
-        Quaternion rotation = Quaternion.Euler(-15, desiredAngle, 0);
-        transform.position = boat.transform.position - (rotation * offset) - offset;
+        Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
+        transform.position = boat.transform.position - (rotation * offset);// - offset;
         transform.LookAt(boat.transform);
+    }
+
+    void rotateCamera(float angle)
+    {
+        transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 
     // Update is called once per frame
