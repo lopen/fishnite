@@ -55,7 +55,6 @@ public class WaveManager : MonoBehaviour
 
         float dot = Vector2.Dot(d, new Vector2(point.x, point.z));
         float f = k * (dot - c * Time.time);
-
         return a * Mathf.Sin(f);
     }
 }
