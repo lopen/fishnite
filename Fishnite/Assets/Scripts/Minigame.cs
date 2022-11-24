@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Minigame : MonoBehaviour
 {
     private Text thisText;
-    public GameObject camera;
+    //public GameObject camera;
     private int score;
 
     // Start is called before the first frame update

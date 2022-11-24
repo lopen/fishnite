@@ -7,9 +7,9 @@ public class WaveManager : MonoBehaviour
 
     public static WaveManager instance;
 
-    public Vector4 WaveA = new Vector4(0.1f, 1f, 0.15f, 5f);
-    public Vector4 WaveB = new Vector4(0.1f, 0f, 0.15f, 10f);
-    public Vector4 WaveC = new Vector4(0.1f, 0.5f, 0.15f, 15f);
+    public Vector4 WaveA = new Vector4(1f, 0.2f, 0.01f, 5f);
+    public Vector4 WaveB = new Vector4(1f, 0f, 0.01f, 10f);
+    public Vector4 WaveC = new Vector4(1f, 0.1f, 0.001f, 15f);
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +55,6 @@ public class WaveManager : MonoBehaviour
 
         float dot = Vector2.Dot(d, new Vector2(point.x, point.z));
         float f = k * (dot - c * Time.time);
-
         return a * Mathf.Sin(f);
     }
 }
