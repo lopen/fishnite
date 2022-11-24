@@ -5,7 +5,7 @@ using UnityEngine;
 public class Floater : MonoBehaviour
 {
     public Rigidbody rigidbody;
-    public float depthBeforeSubmerged = 2f;
+    public float depthBeforeSubmerged = 1f;
     public float displacementAmount = 3f;
     public int floaterCounter = 4;
     public float waterDrag = 2f;

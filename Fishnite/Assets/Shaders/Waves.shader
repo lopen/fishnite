@@ -8,9 +8,9 @@ Shader "Custom/Waves"
         _Metallic ("Metallic", Range(0,1)) = 0.0
 
         // Wave type beat
-        _WaveA ("Wave A (direction, steepness, wavelength)", Vector) = (0.1, 1, 0.15, 5)
-        _WaveB ("Wave B", Vector) = (0.1, 0, 0.15, 10)
-        _WaveC ("Wave C", Vector) = (0.1, 0.5, 0.15, 15)
+        _WaveA ("Wave A (direction, steepness, wavelength)", Vector) = (1, 0.2, 0.01, 5)
+        _WaveB ("Wave B", Vector) = (0.3, 0, 0.01, 10)
+        _WaveC ("Wave C", Vector) = (1, 0.1, 0.01, 15)
     }
     SubShader
     {
@@ -61,9 +61,9 @@ Shader "Custom/Waves"
             );
             
             return float3(
-                d.x * (a * cos(f)),
+                d.x * (a * sin(f)),
                 a * sin(f),
-                d.y * (a * cos(f))
+                d.y * (a * sin(f))
             );
         }
 

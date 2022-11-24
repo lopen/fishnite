@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x, 7, -8);
+        transform.position = new Vector3(transform.position.x, 7, 0);
         transform.rotation = Quaternion.Euler(15, 0, 0);
         offset = boat.transform.position - transform.position;
     }
