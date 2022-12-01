@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571343, b: 0.30692208, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -346,7 +346,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9219146723422074862, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
       propertyPath: speed
-      value: 5
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146723457105849, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: waterDrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146723457105849, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: waterADrag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146723744939057, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: waterDrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146723744939057, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: waterADrag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146723754453630, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: waterDrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146723754453630, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: waterADrag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146724681807930, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: waterDrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146724681807930, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: waterADrag
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
