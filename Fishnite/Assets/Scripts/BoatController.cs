@@ -21,7 +21,7 @@ public class BoatController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float lr = Input.GetAxisRaw("Horizontal"); // left right, lb
         float fb = Input.GetAxisRaw("Vertical");   // forward backward, fb
