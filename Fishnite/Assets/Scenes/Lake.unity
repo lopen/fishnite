@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571343, b: 0.30692208, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -229,6 +229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: boat-with-camera
       objectReference: {fileID: 0}
+    - target: {fileID: 455312010561934323, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 455312010562031507, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -271,6 +275,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 455312010562031507, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960172039763334979, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960172039763334979, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
