@@ -30,10 +30,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _Glossiness: 0.5
-    - _Metallic: 0.066
+    - _Metallic: 0
     m_Colors:
-    - _Color: {r: 0.23584905, g: 0.5648974, b: 0.9433962, a: 1}
+    - _Color: {r: 0.16629584, g: 0.6139794, b: 0.9528302, a: 1}
     - _WaveA: {r: 1, g: 0.2, b: 0.01, a: 5}
-    - _WaveB: {r: 0.3, g: 0, b: 0.01, a: 10}
-    - _WaveC: {r: 1, g: 0.1, b: 0.001, a: 15}
+    - _WaveB: {r: 0.3, g: 0, b: 0.05, a: 10}
+    - _WaveC: {r: 1, g: 0.1, b: 0.01, a: 15}
   m_BuildTextureStacks: []

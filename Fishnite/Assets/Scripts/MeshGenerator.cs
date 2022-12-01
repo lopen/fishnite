@@ -13,8 +13,8 @@ public class MeshGenerator : MonoBehaviour
     int[] triangles;
 
     // length and width for mesh gen
-    public int x = 10;
-    public int y = 10;
+    public int x = 150;
+    public int y = 150;
 
     void Start()
     {
@@ -23,32 +23,45 @@ public class MeshGenerator : MonoBehaviour
 
         GenerateMesh(x,y);
         UpdateMesh();
+
     }
 
     void Update()
     {
-        
     }
 
-    void GenerateMesh(int x, int y)
+    void GenerateMesh(int xSize, int zSize)
     {
-        vertices = new Vector3[(x + 1) * (y + 1)];
-
-        // populate vertices using x and y
-        int vert = 0;
-        for (int i = 0; i <= x; i++)
+        vertices = new Vector3[(xSize + 1) * (zSize + 1)];
+        // populate vertices using xSize and zSize
+        for (int i = 0, z = 0; z <= zSize; z++)
         {
-            for (int j = 0; j <= y; j++)
+            for (int x = 0; x <= xSize; x++)
             {
-                vertices[vert] = new Vector3(i, 0, j);
-                vert++;
+                vertices[i] = new Vector3(x, 0, z);
+                i++;
             }
         }
 
-        triangles = new int[x * y];
-        for (int i = 0; i < x; i++)
+        triangles = new int[x * y * 6];
+        int v = 0;
+        int t = 0;
+        // populate triangles using offsets and xSize and ySize
+        for (int j = 0; j < zSize; j++)
         {
-            
+            for (int i = 0; i < xSize; i++)
+            {
+                triangles[t + 0] = v + 0;
+                triangles[t + 1] = v + xSize + 1;
+                triangles[t + 2] = v + 1;
+                triangles[t + 3] = v + 1;
+                triangles[t + 4] = v + xSize + 1;
+                triangles[t + 5] = v + xSize + 2;
+
+                v++;
+                t += 6;
+            }
+            v++;
         }
     }
 
