@@ -1375,7 +1375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169527511}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 34.5, y: 59.3, z: -49}
+  m_LocalPosition: {x: 50, y: 59.3, z: -49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1917,7 +1917,7 @@ PrefabInstance:
     - target: {fileID: 4384308311544072013, guid: 3318cd2d05cd3d63dbf23635a69d95a2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 20d09f509ede9b8d9bb89bc3eeb48737, type: 2}
+      objectReference: {fileID: 2100000, guid: 76f5cb5b82a89605cb0c99d32f5ee32f, type: 2}
     - target: {fileID: 7887535137319823760, guid: 3318cd2d05cd3d63dbf23635a69d95a2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2833,6 +2833,10 @@ PrefabInstance:
       propertyPath: waterADrag
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9219146723457105851, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: m_TagString
+      value: Right
+      objectReference: {fileID: 0}
     - target: {fileID: 9219146723744939057, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
       propertyPath: waterDrag
       value: 2
@@ -2840,6 +2844,14 @@ PrefabInstance:
     - target: {fileID: 9219146723744939057, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
       propertyPath: waterADrag
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146723744939059, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: m_TagString
+      value: Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219146723754453624, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: m_TagString
+      value: Right
       objectReference: {fileID: 0}
     - target: {fileID: 9219146723754453630, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
       propertyPath: waterDrag
@@ -2849,6 +2861,10 @@ PrefabInstance:
       propertyPath: waterADrag
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9219146724681807924, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
+      propertyPath: m_TagString
+      value: Left
+      objectReference: {fileID: 0}
     - target: {fileID: 9219146724681807930, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
       propertyPath: waterDrag
       value: 2
@@ -2857,6 +2873,7 @@ PrefabInstance:
       propertyPath: waterADrag
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5013288544206255389, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: c0cac0979ec05ea67939160ad5ee3751, type: 3}

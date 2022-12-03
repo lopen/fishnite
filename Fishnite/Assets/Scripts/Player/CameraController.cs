@@ -10,6 +10,9 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // enable depth texture 
+        GetComponent<Camera>().depthTextureMode = DepthTextureMode.Depth;
+
         transform.position = new Vector3(boat.transform.position.x, boat.transform.position.y + 5, boat.transform.position.z - 10);
         transform.rotation = Quaternion.Euler(15, 0, 0);
         offset = boat.transform.position - transform.position;

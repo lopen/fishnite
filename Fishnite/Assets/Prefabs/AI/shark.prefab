@@ -2021,25 +2021,41 @@ PrefabInstance:
       propertyPath: rigidbody
       value: 
       objectReference: {fileID: 2592772003464827626}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: waterDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: waterADrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: displacementAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: depthBeforeSubmerged
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_RootOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0155
+      value: 0.0082
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2079,7 +2095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049155, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_Name
-      value: Floater-Front-Right
+      value: Floater-Fin-Right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2101,25 +2117,41 @@ PrefabInstance:
       propertyPath: rigidbody
       value: 
       objectReference: {fileID: 2592772003464827626}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: waterDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: waterADrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: displacementAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: depthBeforeSubmerged
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_RootOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0036
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2127,7 +2159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0277
+      value: 0.0213
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2159,7 +2191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049155, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_Name
-      value: Floater-Back-Right
+      value: Floater-Front
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2181,25 +2213,41 @@ PrefabInstance:
       propertyPath: rigidbody
       value: 
       objectReference: {fileID: 2592772003464827626}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: waterDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: waterADrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: displacementAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: depthBeforeSubmerged
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_RootOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01897
+      value: -0.0098
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2239,7 +2287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049155, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_Name
-      value: Floater-Front-Left
+      value: Floater-Fin-Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2261,25 +2309,41 @@ PrefabInstance:
       propertyPath: rigidbody
       value: 
       objectReference: {fileID: 2592772003464827626}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: waterDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: waterADrag
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: displacementAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426135045067049153, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
+      propertyPath: depthBeforeSubmerged
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_RootOrder
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0033
+      value: -0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2287,7 +2351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0277
+      value: -0.0182
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049154, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2319,7 +2383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8426135045067049155, guid: d52e69bcdd1e58d4989b8cd7e98507e8, type: 3}
       propertyPath: m_Name
-      value: Floater-Back-Left
+      value: Floater-Back
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
