@@ -4,23 +4,33 @@ Shader "Custom/Waves"
     {
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
 
         // Wave type beat
         _WaveA ("Wave A (direction, steepness, wavelength)", Vector) = (1, 0.2, 0.1, 10)
         _WaveB ("Wave B", Vector) = (0.3, 0, 0.1, 10)
         _WaveC ("Wave C", Vector) = (1, 0.1, 0.1, 15)
+
+        // Underwater fog
+        _WaterFogColor ("Water Fog Color", Color) = (0,0,0,0)
+        _WaterFogDensity ("Water Fog Density", Range(0,2)) = 0.1
+
+        // Foam
+        _FoamColor ("Foam Color", Color) = (1,1,1,1)
+        _FoamWidth ("Foam Width", Range(0,3)) = 0.1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue"="Transparent" }
         LOD 200
+
+        GrabPass { "_WaterBackground" }
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
         // Added vertex:vert to pragma directive
-        #pragma surface surf Standard fullforwardshadows vertex:vert addshadow
+        #pragma surface surf Standard alpha vertex:vert finalcolor:ResetAlpha addshadow
+
+        #include "WaterDepth.cginc"
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
@@ -30,11 +40,10 @@ Shader "Custom/Waves"
         struct Input
         {
             float2 uv_MainTex;
+            float4 screenPos;
         };
 
-        half _Glossiness;
-        half _Metallic;
-        fixed4 _Color;
+        fixed4 _Color, _FoamColor;
         float4 _WaveA, _WaveB, _WaveC;
             
         float3 GerstnerWave (
@@ -67,6 +76,10 @@ Shader "Custom/Waves"
             );
         }
 
+        void ResetAlpha (Input IN, SurfaceOutputStandard o, inout fixed4 color) {
+            color.a = 1;
+        }
+
         void vert(inout appdata_full vertexData) {
             float3 gridPoint        = vertexData.vertex.xyz;
             float3 tangent          = float3(1, 0, 0);
@@ -90,14 +103,18 @@ Shader "Custom/Waves"
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo = c.rgb;
-            // Metallic and smoothness come from slider variables
-            o.Metallic = _Metallic;
-            o.Smoothness = _Glossiness;
-            o.Alpha = c.a;
+            if (CalcFoam(IN.screenPos)) {
+                fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _FoamColor;
+                o.Albedo = c.rgb;
+                o.Alpha = c.a;
+                o.Emission = ColorBelowWater(IN.screenPos) * (1 - c.a);
+            } else {
+                fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+                o.Albedo = c.rgb;
+                o.Alpha = c.a;
+                o.Emission = ColorBelowWater(IN.screenPos) * (1 - c.a);
+            }
         }
         ENDCG
     }
-    FallBack "Diffuse"
 }

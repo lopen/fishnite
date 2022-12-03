@@ -11,12 +11,17 @@ public class BoatController : MonoBehaviour
     Vector3 movement;
     Vector3 turnMovement;
     Rigidbody boatRigidbody;
+
+    GameObject[] leftFloaters;
+    GameObject[] rightFloaters;
     //Rigidbody rudderRigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
         boatRigidbody = GetComponent<Rigidbody>();
+        leftFloaters = GameObject.FindGameObjectsWithTag("Left");
+        rightFloaters = GameObject.FindGameObjectsWithTag("Right");
         //rudderRigidbody = GameObject.FindWithTag("Rudder").GetComponent<Rigidbody>();
     }
 
@@ -44,7 +49,14 @@ public class BoatController : MonoBehaviour
 
     void turn(float lr)
     {
-        turnMovement.Set(lr, 0f, 0f);
+        //turnMovement.Set(lr, 0f, 0f);
         boatRigidbody.AddTorque(this.transform.up * turnSpeed  * lr);
+        // if (lr > 0) {
+        //     boatRigidbody.AddForceAtPosition(Physics.gravity, rightFloaters[0].transform.position, ForceMode.Force);
+        //     boatRigidbody.AddForceAtPosition(Physics.gravity, rightFloaters[1].transform.position, ForceMode.Force);
+        // } else {
+        //     boatRigidbody.AddForceAtPosition(Physics.gravity, leftFloaters[0].transform.position, ForceMode.Force);
+        //     boatRigidbody.AddForceAtPosition(Physics.gravity, leftFloaters[1].transform.position, ForceMode.Force);
+        // }
     }
 }

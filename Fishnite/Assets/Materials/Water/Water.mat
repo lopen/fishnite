@@ -29,11 +29,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Foam: 0.4
+    - _FoamRange: 0.75
+    - _FoamWidth: 0.8
     - _Glossiness: 0.5
     - _Metallic: 0
+    - _WaterFogDensity: 0.465
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.1662958, g: 0.6139794, b: 0.95283014, a: 0.4627451}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - _WaterFogColor: {r: 0, g: 0, b: 0, a: 0}
     - _WaveA: {r: 1, g: 0.2, b: 0.01, a: 5}
-    - _WaveB: {r: 0.3, g: 0, b: 0.01, a: 10}
+    - _WaveB: {r: 0.3, g: 0, b: 0.05, a: 10}
     - _WaveC: {r: 1, g: 0.1, b: 0.01, a: 15}
   m_BuildTextureStacks: []
