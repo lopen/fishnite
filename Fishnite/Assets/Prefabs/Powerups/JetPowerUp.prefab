@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8513428961565077151}
   - component: {fileID: 4696577213591915929}
   - component: {fileID: 7110914306687037241}
+  - component: {fileID: -7486654063736082242}
   m_Layer: 0
   m_Name: JetPowerUp
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8770153834066014662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.06, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47,7 +48,7 @@ CapsuleCollider:
   m_Radius: 0.2
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7110914306687037241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,11 +62,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectSound: {fileID: 8300000, guid: 6d98ae2445640c740a7cb00daeb723cc, type: 3}
+--- !u!114 &-7486654063736082242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770153834066014662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126ab89ccb6f18f62bae301400d1d82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  removeTime: 20
 --- !u!1001 &892827348848593910
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 8513428961565077151}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 260fa001b1efa8a47aae01e9ec412837, type: 3}
@@ -90,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 260fa001b1efa8a47aae01e9ec412837, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 260fa001b1efa8a47aae01e9ec412837, type: 3}
       propertyPath: m_LocalPosition.z
@@ -129,6 +144,7 @@ PrefabInstance:
       value: Rocket_Up
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 260fa001b1efa8a47aae01e9ec412837, type: 3}
 --- !u!4 &858301605255228445 stripped
 Transform:
