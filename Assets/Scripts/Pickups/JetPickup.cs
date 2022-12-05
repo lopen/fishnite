@@ -16,7 +16,6 @@ public class JetPickup : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         //player.GetComponent<PowerUpStore>().addPowerup(jet);
         AudioSource.PlayClipAtPoint(collectSound, transform.position);
-
         Destroy(gameObject);
     }
 

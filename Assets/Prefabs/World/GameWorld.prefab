@@ -47,7 +47,8 @@ MonoBehaviour:
   obstacle: {fileID: 789868304111640990, guid: 3987c3b7099e0a11b853c926a96ac90d, type: 3}
   itemTime: {fileID: 2366413935296139444, guid: d6712aa953f2e2d4db94d8e02c47d814, type: 3}
   itemPower: {fileID: 8770153834066014662, guid: 94f4d6af7c15e68408db01493999ce2b, type: 3}
-  despawnTime: 5
+  fishingSpot: {fileID: 7294456160172362674, guid: 8b64dce0196619147a5f3e5155c1ac00, type: 3}
+  spawnRate: 5
 --- !u!1 &6799732841244199736
 GameObject:
   m_ObjectHideFlags: 0

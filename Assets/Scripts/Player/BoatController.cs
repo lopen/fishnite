@@ -14,7 +14,6 @@ public class BoatController : MonoBehaviour
 
     GameObject[] leftFloaters;
     GameObject[] rightFloaters;
-    //Rigidbody rudderRigidbody;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +21,8 @@ public class BoatController : MonoBehaviour
         boatRigidbody = GetComponent<Rigidbody>();
         leftFloaters = GameObject.FindGameObjectsWithTag("Left");
         rightFloaters = GameObject.FindGameObjectsWithTag("Right");
-        //rudderRigidbody = GameObject.FindWithTag("Rudder").GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         float lr = Input.GetAxisRaw("Horizontal"); // left right, lb
@@ -51,12 +48,5 @@ public class BoatController : MonoBehaviour
     {
         //turnMovement.Set(lr, 0f, 0f);
         boatRigidbody.AddTorque(this.transform.up * turnSpeed  * lr);
-        // if (lr > 0) {
-        //     boatRigidbody.AddForceAtPosition(Physics.gravity, rightFloaters[0].transform.position, ForceMode.Force);
-        //     boatRigidbody.AddForceAtPosition(Physics.gravity, rightFloaters[1].transform.position, ForceMode.Force);
-        // } else {
-        //     boatRigidbody.AddForceAtPosition(Physics.gravity, leftFloaters[0].transform.position, ForceMode.Force);
-        //     boatRigidbody.AddForceAtPosition(Physics.gravity, leftFloaters[1].transform.position, ForceMode.Force);
-        // }
     }
 }

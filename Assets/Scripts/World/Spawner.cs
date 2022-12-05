@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     
     public GameObject itemTime;
     public GameObject itemPower;
+    public GameObject fishingSpot;
 
     public float spawnRate = 5.0f;
 
@@ -35,6 +36,7 @@ public class Spawner : MonoBehaviour
         {
             Instantiate(itemTime, getPos(true), Quaternion.identity);
             Instantiate(itemPower, getPos(true), Quaternion.identity); 
+            Instantiate(fishingSpot, getPos(true), Quaternion.identity);
 
             yield return new WaitForSeconds(spawnRate);  
         }
