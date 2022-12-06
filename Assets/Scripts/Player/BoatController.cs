@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BoatController : MonoBehaviour
 {
-    public float speed = 5f; 
-    public float turnSpeed = 3f;
-    public float topSpeed = 10f;
+    public float speed = 11f; 
+    public float turnSpeed = 4f;
+    public float boostMultiplier = 1.6f;
+
+    public float nitrusMeter = 0f; // essentially just how many seconds of nitrus you have
 
     Vector3 movement;
     Vector3 turnMovement;
@@ -14,7 +16,6 @@ public class BoatController : MonoBehaviour
 
     GameObject[] leftFloaters;
     GameObject[] rightFloaters;
-    //Rigidbody rudderRigidbody;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,13 @@ public class BoatController : MonoBehaviour
         boatRigidbody = GetComponent<Rigidbody>();
         leftFloaters = GameObject.FindGameObjectsWithTag("Left");
         rightFloaters = GameObject.FindGameObjectsWithTag("Right");
-        //rudderRigidbody = GameObject.FindWithTag("Rudder").GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    void Update()
+    {
+        // check if player is hitting nitrus button, if boosting then start nitrus
+    }
+
     void FixedUpdate()
     {
         float lr = Input.GetAxisRaw("Horizontal"); // left right, lb
@@ -51,12 +55,21 @@ public class BoatController : MonoBehaviour
     {
         //turnMovement.Set(lr, 0f, 0f);
         boatRigidbody.AddTorque(this.transform.up * turnSpeed  * lr);
-        // if (lr > 0) {
-        //     boatRigidbody.AddForceAtPosition(Physics.gravity, rightFloaters[0].transform.position, ForceMode.Force);
-        //     boatRigidbody.AddForceAtPosition(Physics.gravity, rightFloaters[1].transform.position, ForceMode.Force);
-        // } else {
-        //     boatRigidbody.AddForceAtPosition(Physics.gravity, leftFloaters[0].transform.position, ForceMode.Force);
-        //     boatRigidbody.AddForceAtPosition(Physics.gravity, leftFloaters[1].transform.position, ForceMode.Force);
-        // }
+    }
+
+    public void speedBoost(float time)
+    {
+        // add nitrus to our nitrus counter
+        nitrusMeter++;
+    }
+
+    IEnumerator increaseSpeed(float time) 
+    {
+        // Reember to enable the nitrus booster on the boat
+        speed = speed * boostMultiplier;
+        turnSpeed = turnSpeed * boostMultiplier;
+        yield return new WaitForSeconds(time);
+        speed = speed / boostMultiplier;
+        turnSpeed = turnSpeed / boostMultiplier;
     }
 }
