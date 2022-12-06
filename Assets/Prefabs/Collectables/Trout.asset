@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19ebe326bf771c645b7751d641ba1cc6, type: 3}
-  m_Name: FishNUMBERONE
+  m_Name: Trout
   m_EditorClassIdentifier: 
-  itemDisplayName: 
-  itemIcon: {fileID: 0}
+  itemDisplayName: Big Trouty Boy
+  itemIcon: {fileID: 21300000, guid: eebd35e1e4198e843ab7a459c961e12d, type: 3}
+  weight: 3

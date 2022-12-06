@@ -6,4 +6,5 @@ using UnityEngine;
 public class ItemData : ScriptableObject {
     public string itemDisplayName;
     public Sprite itemIcon;
+    public float weight;
 }

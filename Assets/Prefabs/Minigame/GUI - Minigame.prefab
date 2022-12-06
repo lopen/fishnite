@@ -90,7 +90,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1491394663747832986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 1289848474785553250}
   m_Layer: 5
   m_Name: Background - Trigger / Image Container
-  m_TagString: Untagged
+  m_TagString: FishSprite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1699,6 +1699,9 @@ MonoBehaviour:
   triggerContainer: {fileID: 1491394664063912439}
   lossScreen: {fileID: 1515632820185384478}
   winScreen: {fileID: 3092731497010506531}
+  fishes:
+  - {fileID: 11400000, guid: 3d7b31442e61fd5639a486b8ab00e8be, type: 2}
+  - {fileID: 11400000, guid: 822361bd9daec8537bbe00442e8874be, type: 2}
 --- !u!1 &1491394665670291179
 GameObject:
   m_ObjectHideFlags: 0
