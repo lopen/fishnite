@@ -5,13 +5,19 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour
 {
     public float removeTime = 20.0f;
+    private float updown = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
         //StartCoroutine("Flicker"); have the item flicker before it despawns
-        transform.Rotate(new Vector3(0, 100, 0) * Time.deltaTime);
         Destroy(gameObject, removeTime);
+    }
+
+    void Update()
+    {
+        transform.Rotate(new Vector3(0, 100, 0) * Time.deltaTime);
+        //transform.position = new Vector3(transform.position.x, transform.position.y + Time.deltaTime, transform.position.z);
     }
 
     IEnumerator Flicker()

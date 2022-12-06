@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BoatController : MonoBehaviour
 {
-    public float speed = 5f; 
-    public float turnSpeed = 3f;
-    public float topSpeed = 10f;
+    public float speed = 11f; 
+    public float turnSpeed = 4f;
+    public float boostMultiplier = 1.6f;
 
     Vector3 movement;
     Vector3 turnMovement;
@@ -48,5 +48,19 @@ public class BoatController : MonoBehaviour
     {
         //turnMovement.Set(lr, 0f, 0f);
         boatRigidbody.AddTorque(this.transform.up * turnSpeed  * lr);
+    }
+
+    public void speedBoost(float time)
+    {
+        StartCoroutine(increaseSpeed(time));
+    }
+
+    IEnumerator increaseSpeed(float time) 
+    {
+        speed = speed * boostMultiplier;
+        turnSpeed = turnSpeed * boostMultiplier;
+        yield return new WaitForSeconds(time);
+        speed = speed / boostMultiplier;
+        turnSpeed = turnSpeed / boostMultiplier;
     }
 }

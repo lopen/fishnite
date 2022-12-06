@@ -16,7 +16,7 @@ public class JetPickup : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        //player.GetComponent<PowerUpStore>().addPowerup(jet);
+        player.GetComponent<BoatController>().speedBoost(3f);
         AudioSource.PlayClipAtPoint(collectSound, transform.position);
         score.GetComponent<Score>().IncreaseScore();
         Destroy(gameObject);
