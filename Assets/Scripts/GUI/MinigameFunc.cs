@@ -37,14 +37,18 @@ public class MinigameFunc : MonoBehaviour
     private int raiseCount = 0;
     private int failCount = 0;
 
-    //Inventory handling
-    
-    public delegate void FishBitchin();
+    // Inventory handling
+    private PlayerInv playerInventory;
 
-    public static event FishBitchin OnFishWin;
+    // Fish object
+    public List<ItemData> fishes;
+    private ItemData fish;
 
 
     void Start() {
+        playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInv>();
+        fish = fishes[Random.Range(0, fishes.Count)];
+
         runSlider = true;
         StartCoroutine(UpdateSliderVal());
         GenerateTrigger();
@@ -118,7 +122,7 @@ public class MinigameFunc : MonoBehaviour
             fishingLine.SetActive(false);
             playerAnims.SetBool("Winner", true);
             sliderObject.SetActive(false);
-            OnFishWin.Invoke();
+            playerInventory.AddItem(fish);
 
             StartCoroutine(TimeWaitDestroy(3f));
         }

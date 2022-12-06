@@ -4,31 +4,33 @@ using UnityEngine;
 
 public class PlayerInv : MonoBehaviour
 {
-    public List<InventoryItem> inventory = new List<InventoryItem>();
+    public List<ItemData> inventory = new List<ItemData>();
     public int InvSize = 3;
-    [SerializeField] public ItemData fishTester;
 
-    private void Start() {
-        //InventoryItem newItem = new InventoryItem(fishTester);
-        //MinigameFunc.OnFishWin += AddItemSpecificFish;
-    }
+    private void Start() { }
 
-    private void Update() {
-        //MinigameFunc.OnFishWin += AddItemSpecificFish;
-    }
-    public void AddItem(ItemData itemData) {
-        InventoryItem newItem = new InventoryItem(itemData);
-        inventory.Add(newItem);
-        print("Item Added to inv" + itemData.itemDisplayName);
+    private void Update() { }
+
+    public bool AddItem(ItemData itemData) 
+    {
+        if (inventory.Count < InvSize) {
+            inventory.Add(itemData);
+            print("Item Added to inv" + itemData.itemDisplayName);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void RemoveItem(ItemData itemData) {
-        //inventory.Remove(itemData);
+        inventory.Remove(itemData);
     }
 
-    public void AddItemBigFish() {
-        //InventoryItem newItem = new InventoryItem(fishTester);
-        //inventory.Add(newItem);
-        print("Item Added to inv");
+    public void increaseInvSize() {
+        InvSize++;
+    }
+
+    public void decreaseInvSize() {
+        InvSize--;
     }
 }

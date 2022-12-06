@@ -8,23 +8,35 @@ public class Score : MonoBehaviour
     [SerializeField] private TextMeshProUGUI score1;
 
     void Start() {
-        ResetTimer();
+        ResetScore();
     }
 
     void Update() {
-        UpdateScore();
     }
 
     public void IncreaseScore() {
         score++;
+        UpdateScore();
+    }
+
+    public void IncreaseScoreBy(float amount) {
+        score = score + amount;
+        UpdateScore();
     }
 
     public void DecreaseScore() {
         score--;
+        UpdateScore();
     }
 
-    private void ResetTimer() {
+    public void DecreaseScoreBy(float amount) {
+        score = score - amount;
+        UpdateScore();
+    }
+
+    private void ResetScore() {
         score = 0;
+        UpdateScore();
     }
 
     private void UpdateScore() {
