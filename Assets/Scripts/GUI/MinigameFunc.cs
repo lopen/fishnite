@@ -37,6 +37,8 @@ public class MinigameFunc : MonoBehaviour
     private int raiseCount = 0;
     private int failCount = 0;
     private int count = 0;
+    
+    public Score scoreCounter;
 
     // Event handling
 
@@ -49,6 +51,7 @@ public class MinigameFunc : MonoBehaviour
     public static event WinMinigame OnWon;
 
     void Start() {
+        scoreCounter = GameObject.FindWithTag("Score").GetComponent<Score>();
         runSlider = true;
         StartCoroutine(UpdateSliderVal());
         trigger = Instantiate(triggerZone, triggerContainer) as GameObject;
@@ -120,7 +123,7 @@ public class MinigameFunc : MonoBehaviour
             fishingLine.SetActive(false);
             playerAnims.SetBool("Winner", true);
             sliderObject.SetActive(false);
-
+            scoreCounter.IncreaseScore();
             StartCoroutine(TimeWaitDestroy(3f));
         } 
         print(count);
@@ -138,7 +141,7 @@ public class MinigameFunc : MonoBehaviour
             fishingLine.SetActive(false);
             playerAnims.SetBool("Failed", true);
             sliderObject.SetActive(false);
-
+            scoreCounter.DecreaseScore();
             StartCoroutine(TimeWaitDestroy(3f));
         }
         hook.SetActive(true);
