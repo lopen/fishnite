@@ -5,12 +5,6 @@ using UnityEngine;
 public class FishPickupLogic : MonoBehaviour
 {
 
-    [SerializeField] private GameObject fish1;
-    [SerializeField] private GameObject fish2;
-
-    [SerializeField] private GameObject splashObject;
-    private Vector3 fishBig;
-
     [SerializeField] private GameObject minigame;
     private bool canFish = false;
 
@@ -30,15 +24,6 @@ public class FishPickupLogic : MonoBehaviour
                 Instantiate(minigame, (player.transform.position - player.transform.forward * 3 + player.transform.up * 2), player.transform.rotation);
                 Destroy(gameObject);
             }
-        }
-
-        if (fish1.transform.localEulerAngles.z == 160) {
-            fishBig = fish1.transform.position;
-            GameObject fishTest = Instantiate(splashObject) as GameObject;
-
-
-            fishTest.transform.localPosition = fishBig;
-            Destroy(fishTest, 10f);
         }
     }
 
