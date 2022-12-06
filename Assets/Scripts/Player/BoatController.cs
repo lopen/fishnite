@@ -8,6 +8,8 @@ public class BoatController : MonoBehaviour
     public float turnSpeed = 4f;
     public float boostMultiplier = 1.6f;
 
+    public float nitrusMeter = 0f; // essentially just how many seconds of nitrus you have
+
     Vector3 movement;
     Vector3 turnMovement;
     Rigidbody boatRigidbody;
@@ -21,6 +23,11 @@ public class BoatController : MonoBehaviour
         boatRigidbody = GetComponent<Rigidbody>();
         leftFloaters = GameObject.FindGameObjectsWithTag("Left");
         rightFloaters = GameObject.FindGameObjectsWithTag("Right");
+    }
+
+    void Update()
+    {
+        // check if player is hitting nitrus button, if boosting then start nitrus
     }
 
     void FixedUpdate()
@@ -52,11 +59,13 @@ public class BoatController : MonoBehaviour
 
     public void speedBoost(float time)
     {
-        StartCoroutine(increaseSpeed(time));
+        // add nitrus to our nitrus counter
+        nitrusMeter++;
     }
 
     IEnumerator increaseSpeed(float time) 
     {
+        // Reember to enable the nitrus booster on the boat
         speed = speed * boostMultiplier;
         turnSpeed = turnSpeed * boostMultiplier;
         yield return new WaitForSeconds(time);

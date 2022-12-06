@@ -3026,6 +3026,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: actual-boat
       objectReference: {fileID: 0}
+    - target: {fileID: 2628590066826928488, guid: 66941f96bc5a7c05d9fe7619a83c3a81, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3292301958276860336, guid: 66941f96bc5a7c05d9fe7619a83c3a81, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 600

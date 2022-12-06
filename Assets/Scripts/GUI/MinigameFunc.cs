@@ -36,28 +36,19 @@ public class MinigameFunc : MonoBehaviour
 
     private int raiseCount = 0;
     private int failCount = 0;
-    private int count = 0;
+
+    //Inventory handling
     
-    public Score scoreCounter;
+    public delegate void FishBitchin();
 
-    // Event handling
+    public static event FishBitchin OnFishWin;
 
-    public delegate void StartMinigame();
-    public delegate void FailMinigame();
-    public delegate void WinMinigame();
-
-    public static event StartMinigame OnStart;
-    public static event FailMinigame OnFailed;
-    public static event WinMinigame OnWon;
 
     void Start() {
-        scoreCounter = GameObject.FindWithTag("Score").GetComponent<Score>();
         runSlider = true;
         StartCoroutine(UpdateSliderVal());
-        trigger = Instantiate(triggerZone, triggerContainer) as GameObject;
         GenerateTrigger();
         Time.timeScale = 0;
-        sliderSpeed = 1.5f;
     }
 
     // Update is called once per frame
@@ -70,7 +61,8 @@ public class MinigameFunc : MonoBehaviour
             userClick = false;
         }
         sliderMin = trigger.GetComponent<RectTransform>().localPosition.x;
-        sliderMax = sliderMin + (10.5f * trigger.GetComponent<RectTransform>().localScale.x);
+        sliderMax = sliderMin + 10.5f;
+
         triggerTest = triggerObject.GetComponent<RectTransform>().localPosition.x;
     }
 
@@ -78,24 +70,26 @@ public class MinigameFunc : MonoBehaviour
     IEnumerator UpdateSliderVal () {
         while (runSlider == true) {
 
-            calcSliderSpeed();
+            if (sliderUI.value == 0) {
+                sliderSpeed = 0.2f;
+            } else if (sliderUI.value == 100) {
+                sliderSpeed = -0.2f;
+            }
 
             if (triggerTest > sliderMin && triggerTest < sliderMax && userClick == true) {   
                 runSlider = false;
                 userClick = false;
                 hook.SetActive(false);
-                count++;
                 GenerateTrigger();
                 ProgressStage();
-            } else if ((userClick == true && triggerTest > sliderMax) || (userClick == true && triggerTest < sliderMin)) {
+            } else if (userClick == true && triggerTest > sliderMax || userClick == true && triggerTest < sliderMin) {
                 runSlider = false;
                 userClick = false;
                 hook.SetActive(false);
-                count--;
                 DegressStage();
             } 
             
-            //sliderSpeed += sliderSpeed * Time.unscaledDeltaTime;
+            sliderSpeed += sliderSpeed * Time.unscaledDeltaTime;
             sliderUI.value = sliderSpeed + sliderUI.value;
             sliderval = sliderUI.value;
             sliderval += -70 + sliderSpeed + sliderUI.value / 2.5f;
@@ -112,54 +106,51 @@ public class MinigameFunc : MonoBehaviour
     }
 
     private void ProgressStage() {
-        sliderUI.transform.Translate(new Vector3(0f, 3f*Time.unscaledDeltaTime, 0f));
+        sliderUI.transform.Translate(0f, 60f*Time.unscaledDeltaTime, 0f);
         hook.SetActive(true);
+        raiseCount++;
         runSlider = true;
         sliderUI.value = 0f;
-        if (count == 3) {
+        if (raiseCount == 1) {
             runSlider = false;
             
             winScreen.SetActive(true);
             fishingLine.SetActive(false);
             playerAnims.SetBool("Winner", true);
             sliderObject.SetActive(false);
-            scoreCounter.IncreaseScore();
+            OnFishWin.Invoke();
+
             StartCoroutine(TimeWaitDestroy(3f));
-        } 
-        print(count);
+        }
+        print(raiseCount);
     }
 
     private void DegressStage() {
-        if (count > 0) {
-            sliderUI.transform.Translate(new Vector3(0f, -3f*Time.unscaledDeltaTime, 0f));
-        } else if (count == 0) {
-            // just dont move done lol
-        } else {
+        if (raiseCount > 0) {
+            sliderUI.transform.Translate(0f, -60f*Time.unscaledDeltaTime, 0f);
+            raiseCount--;
+        }
+        failCount++;
+        hook.SetActive(true);
+        if (failCount >= 2) {
             runSlider = false;
             //OnFailed();
             lossScreen.SetActive(true);
             fishingLine.SetActive(false);
             playerAnims.SetBool("Failed", true);
             sliderObject.SetActive(false);
-            scoreCounter.DecreaseScore();
+
             StartCoroutine(TimeWaitDestroy(3f));
+        } else if (failCount < 2) {
+            runSlider = true;
         }
-        hook.SetActive(true);
-        runSlider = true;
         sliderUI.value = 0f;
-        print(count);
+        print(raiseCount);
     }
 
     private void GenerateTrigger() {
-        trigger.transform.localScale = new Vector3(Random.Range(1,3), 1, 1);
+        Destroy(trigger);
+        trigger = Instantiate(triggerZone, triggerContainer) as GameObject;
         trigger.transform.localPosition = new Vector3(Random.Range(-70, 70), 0, 0);
-    }
-
-    private void calcSliderSpeed() {
-        if (sliderUI.value == 0) {
-            sliderSpeed = sliderSpeed * -1f;
-        } else if (sliderUI.value == 100) {
-            sliderSpeed = sliderSpeed * -1f;
-        }
     }
 }
