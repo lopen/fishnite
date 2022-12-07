@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour
 {
     public float removeTime = 20.0f;
-    private float updown = 1f;
+    //private float updown = 1f;
 
     // Start is called before the first frame update
     void Start()
