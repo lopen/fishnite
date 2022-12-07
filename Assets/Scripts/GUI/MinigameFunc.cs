@@ -48,6 +48,9 @@ public class MinigameFunc : MonoBehaviour
     void Start() {
         playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInv>();
         fish = fishes[Random.Range(0, fishes.Count)];
+        
+        // get image object
+        // assigned fish.imagesprite
 
         runSlider = true;
         StartCoroutine(UpdateSliderVal());
