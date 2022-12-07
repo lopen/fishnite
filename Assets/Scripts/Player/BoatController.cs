@@ -28,6 +28,9 @@ public class BoatController : MonoBehaviour
     void Update()
     {
         // check if player is hitting nitrus button, if boosting then start nitrus
+        if (Input.GetKeyDown("n")) {
+            StartCoroutine(increaseSpeed(nitrusMeter));
+        }
     }
 
     void FixedUpdate()
@@ -63,12 +66,12 @@ public class BoatController : MonoBehaviour
         nitrusMeter++;
     }
 
-    IEnumerator increaseSpeed(float time) 
+    IEnumerator increaseSpeed(float nitrus) 
     {
         // Reember to enable the nitrus booster on the boat
         speed = speed * boostMultiplier;
         turnSpeed = turnSpeed * boostMultiplier;
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(nitrus);
         speed = speed / boostMultiplier;
         turnSpeed = turnSpeed / boostMultiplier;
     }
