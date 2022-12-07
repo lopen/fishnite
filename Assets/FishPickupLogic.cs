@@ -27,6 +27,14 @@ public class FishPickupLogic : MonoBehaviour
         }
     }
 
+    void FixedUpdate() 
+    {
+        float waveHeight = WaveManager.instance.getWaveHeight(transform.position.x, transform.position.z);
+        if (transform.position.y < waveHeight || transform.position.y > waveHeight) {
+            transform.position = new Vector3(transform.position.x, waveHeight, transform.position.z);
+        }
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
             canFish = true;
