@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        musicSlider.value = musicSource.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume", 0.3f);
         musicSlider.onValueChanged.AddListener(delegate {SetMusicVol();});
     }
 
