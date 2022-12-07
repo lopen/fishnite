@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Floater : MonoBehaviour
 {
-    public Rigidbody rigidbody;
+    new public Rigidbody rigidbody;
     public float depthBeforeSubmerged = 1f;
     public float displacementAmount = 3f;
     public int floaterCounter = 4;

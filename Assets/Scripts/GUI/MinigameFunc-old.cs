@@ -39,14 +39,6 @@ public class MinigameFuncold : MonoBehaviour
 
     // Event handling
 
-    public delegate void StartMinigame();
-    public delegate void FailMinigame();
-    public delegate void WinMinigame();
-
-    public static event StartMinigame OnStart;
-    public static event FailMinigame OnFailed;
-    public static event WinMinigame OnWon;
-
     void Start() {
         runSlider = true;
         StartCoroutine(UpdateSliderVal());
