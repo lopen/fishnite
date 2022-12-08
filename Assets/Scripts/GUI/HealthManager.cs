@@ -44,13 +44,10 @@ public class HealthManager : MonoBehaviour
 
     void grayHeart()
     {
-        for (int i = hearts.Count - 1; i >= 0; i--)
+        for (int i = hearts.Count; i >= 0; i--)
         {
-            Image img = hearts[i].GetComponent<Image>();
-            Color c = img.color;
-            if (c.a == 1)
+            if (changeHeartOpacity(i, 0.3f))
             {
-                img.color = new Color(c.r, c.g, c.b, 0.3f);
                 break;
             }
         }
@@ -58,24 +55,35 @@ public class HealthManager : MonoBehaviour
 
     void ungrayHeart()
     {
-        for (int i = 0; i < hearts.Count; i++)
+        for (int i = 0; i <= hearts.Count; i++)
         {
-            Image img = hearts[i].GetComponent<Image>();
-            Color c = img.color;
-            if (c.a != 1)
+            if (changeHeartOpacity(i, 1f))
             {
-                img.color = new Color(c.r, c.g, c.b, 1f);
                 break;
             }
         }
     }
 
-    void addHeart()
+    bool changeHeartOpacity(int i, float f)
     {
-        
+        Image img = hearts[i].GetComponent<Image>();
+        Color c = img.color;
+        if (c.a != f)
+        {
+            img.color = new Color(c.r, c.g, c.b, f);
+            return true;
+        }
+        return false;
     }
 
-    void removeHeart()
+    public void addHeart()
+    {
+        createHeart(hearts.Count);
+        // set opacity to 0.3f
+        changeHeartOpacity(hearts.Count - 1, 0.3f);
+    }
+
+    public void removeHeart()
     {
         hearts.RemoveAt(hearts.Count - 1);
     }
