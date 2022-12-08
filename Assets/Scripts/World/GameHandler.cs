@@ -6,6 +6,7 @@ public class GameHandler : MonoBehaviour
 {
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] public GameObject ingameMusic;
+    [SerializeField] public GameObject timer;
 
     public bool gameRunning;
 
