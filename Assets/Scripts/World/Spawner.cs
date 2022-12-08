@@ -67,8 +67,8 @@ public class Spawner : MonoBehaviour
         foreach (GameObject obj in pos)
         {
             Vector3 objPos = obj.transform.position;
-            if ((objPos.x + 10 < newPos.x && newPos.x < objPos.x - 10) ||
-                (objPos.z + 10 < newPos.z && newPos.z < objPos.z - 10))
+            if ((objPos.x + 5 > newPos.x && newPos.x > objPos.x - 5) ||
+                (objPos.z + 5 > newPos.z && newPos.z > objPos.z - 5))
             {
                 return false;
             }
