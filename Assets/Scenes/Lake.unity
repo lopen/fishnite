@@ -1297,6 +1297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDuration: 10
+  currentTime: 
   min1: {fileID: 561836314}
   min2: {fileID: 2133300103}
   seperator: {fileID: 1186775169}
@@ -2289,6 +2290,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 662267152}
   ingameMusic: {fileID: 947909138}
   timer: {fileID: 416639329}
+  player: {fileID: 1611771293}
   gameRunning: 0
 --- !u!1 &805441539
 GameObject:
@@ -4487,6 +4489,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573959303}
   m_CullTransparentMesh: 1
+--- !u!1 &1611771293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2387264003236469849, guid: 66941f96bc5a7c05d9fe7619a83c3a81, type: 3}
+  m_PrefabInstance: {fileID: 7044339945418663860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1685349935
 GameObject:
   m_ObjectHideFlags: 0

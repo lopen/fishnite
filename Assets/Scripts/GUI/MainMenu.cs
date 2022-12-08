@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class MainMenu : MonoBehaviour
    [SerializeField] private GameObject settingsButton;
    [SerializeField] private GameObject muteButton;
    [SerializeField] private GameObject exitButton;
-   [SerializeField] private GameObject highScore;
+   [SerializeField] private TextMeshProUGUI highScore;
+   [SerializeField] private GameObject highScoreContainer;
 
    [SerializeField] private Slider musicSlider;
 
@@ -22,6 +24,7 @@ public class MainMenu : MonoBehaviour
    void Start() {
       musicSlider.value = this.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume", 0.3f);
       musicSlider.onValueChanged.AddListener(delegate {SetMusicVol();});
+      highScore.text = PlayerPrefs.GetFloat("HighScore", 0f).ToString("00000");
    
       settingsOpen = false;
    }
@@ -43,12 +46,13 @@ public class MainMenu : MonoBehaviour
       settingsButton.SetActive(false);
       exitButton.SetActive(false);
       muteButton.SetActive(false);
+      highScoreContainer.SetActive(false);
 
       settingsOpen = true;
    }
 
    // Called on close of settings menu
-   private void CloseMenuSettings() {
+   public void CloseMenuSettings() {
       SettingsMenuSelf.SetActive(false);
 
       titleObject.SetActive(true);
@@ -56,6 +60,7 @@ public class MainMenu : MonoBehaviour
       settingsButton.SetActive(true);
       exitButton.SetActive(true);
       muteButton.SetActive(true);
+      highScoreContainer.SetActive(true);
 
       settingsOpen = false;
    }

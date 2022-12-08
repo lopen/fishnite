@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
 
     private float flashTimer;
     private float flashDuration = 1f;
+    public string currentTime;
 
     [SerializeField] private TextMeshProUGUI min1;
     [SerializeField] private TextMeshProUGUI min2;
@@ -45,7 +46,7 @@ public class Timer : MonoBehaviour
         float mins = Mathf.FloorToInt(time / 60);
         float secs = Mathf.FloorToInt(time % 60);
 
-        string currentTime = string.Format("{00:00}{1:00}", mins, secs);
+        currentTime = string.Format("{00:00}{1:00}", mins, secs);
         min1.text = currentTime[0].ToString();
         min2.text = currentTime[1].ToString();
 
@@ -78,5 +79,9 @@ public class Timer : MonoBehaviour
 
         sec1.enabled = status;
         sec2.enabled = status;
+    }
+
+    public string GetCurrentTime() {
+        return currentTime;
     }
 }
