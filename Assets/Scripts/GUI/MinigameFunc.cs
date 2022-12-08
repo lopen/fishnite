@@ -23,6 +23,8 @@ public class MinigameFunc : MonoBehaviour
     [SerializeField] private GameObject lossScreen;
     [SerializeField] private GameObject winScreen;
     private GameObject trigger;
+    private bool fishmoving = false;
+    private float upDown = 0f;
     
     private float sliderval;
     private float sliderSpeed; 
@@ -71,6 +73,10 @@ public class MinigameFunc : MonoBehaviour
         sliderMax = sliderMin + 10.5f;
 
         triggerTest = triggerObject.GetComponent<RectTransform>().localPosition.x;
+        if (fishmoving)
+        {
+            sliderUI.transform.Translate(0f, upDown * 0.2f * Time.unscaledDeltaTime, 0f);
+        }
     }
 
     // Co-routine for increasing slider value, update handles this too fast and there is no need to call this following completion.
@@ -113,12 +119,15 @@ public class MinigameFunc : MonoBehaviour
     }
 
     private void ProgressStage() {
-        sliderUI.transform.Translate(0f, 60f*Time.unscaledDeltaTime, 0f);
+        //sliderUI.transform.Translate(0f, 60f*Time.unscaledDeltaTime, 0f);
+        fishmoving = true;
+        upDown = 1;
+        StartCoroutine(moveFish(1));
         hook.SetActive(true);
         raiseCount++;
         runSlider = true;
         sliderUI.value = 0f;
-        if (raiseCount == 1) {
+        if (raiseCount == 2) {
             runSlider = false;
             
             winScreen.SetActive(true);
@@ -133,9 +142,15 @@ public class MinigameFunc : MonoBehaviour
     }
 
     private void DegressStage() {
+
         if (raiseCount > 0) {
-            sliderUI.transform.Translate(0f, -60f*Time.unscaledDeltaTime, 0f);
             raiseCount--;
+        }
+        if (failCount > 0)
+        {
+            fishmoving = true;
+            upDown = -1;
+            StartCoroutine(moveFish(1));
         }
         failCount++;
         hook.SetActive(true);
@@ -153,6 +168,11 @@ public class MinigameFunc : MonoBehaviour
         }
         sliderUI.value = 0f;
         print(raiseCount);
+    }
+    IEnumerator moveFish(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        fishmoving = false;
     }
 
     private void GenerateTrigger() {
