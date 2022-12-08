@@ -7,6 +7,8 @@ public class Vendor : MonoBehaviour
     private bool canSell = false;
     private GameObject player;
     private Score score;
+    public GameObject smallfish;
+    public GameObject morefish;
     public AudioClip sellSound;
 
     private List<ItemData> playerInventory;
@@ -40,6 +42,22 @@ public class Vendor : MonoBehaviour
             AudioSource.PlayClipAtPoint(sellSound, transform.position);
         }
         player.GetComponent<PlayerInv>().inventory.Clear();
+
+        checkScore();
+    }
+
+    void checkScore()
+    {
+        if (score.getScore() > 10)
+        {
+            // set first fish active
+            smallfish.SetActive(true);
+            if (score.getScore() > 20)
+            {
+                // mMOAR
+                morefish.SetActive(true);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
