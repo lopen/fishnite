@@ -35,7 +35,7 @@ public class BoatController : MonoBehaviour
     void Update()
     {
         // check if player is hitting nitrus button, if boosting then start nitrus
-        if (Input.GetKeyDown("n") && !boosting && nitrusMeter > 0) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !boosting && nitrusMeter > 0) {
             //StartCoroutine(decreaseNitrusMeter(nitrusMeter));
             StartCoroutine(increaseSpeed(nitrusMeter));
         }

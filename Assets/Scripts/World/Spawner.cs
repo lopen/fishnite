@@ -6,8 +6,9 @@ public class Spawner : MonoBehaviour
 {
 
     public GameObject obstacle;
-    //Vector3[] obstaclePos;
-    
+
+    List<GameObject> pos = new List<GameObject>();
+
     public GameObject fishingSpot;
 
     public List<GameObject> powerups;
@@ -23,9 +24,9 @@ public class Spawner : MonoBehaviour
 
     void spawnObstacles() 
     {
-        for (int i = 0; i < Random.Range(5, 10); i++) 
+        for (int i = 0; i < Random.Range(8, 15); i++) 
         {
-            Instantiate(obstacle, getPos(false), Quaternion.identity);
+            pos.Add(Instantiate(obstacle, getPos(false), new Quaternion(0,Random.Range(0,180),0,0)));
         }
     }
 
@@ -45,22 +46,33 @@ public class Spawner : MonoBehaviour
 
     Vector3 getPos(bool item) 
     {
-        Vector3 pos = new Vector3(
-                                Random.Range(10, 85), 
-                                item ? 1 : Random.Range(-5,-3), 
-                                Random.Range(-3, -85));
+        bool foundPos = false;
+        Vector3 pos = new Vector3(0,0,0);
 
-        // for (int i = 0; i < obstaclePos.Length; i++) 
-        // {
-        //     Vector3 p = obstaclePos[i];
-        //     if (p.x == pos.x || p.z == pos.z) {
+        while (!foundPos)
+        {
+            pos = new Vector3(
+                            Random.Range(10, 85),
+                            item ? 1 : Random.Range(-5, -3),
+                            Random.Range(-3, -85));
 
-        //     }
-        // }
-
-
-        // obstaclePos[obstaclePos.Length] = pos;
+            foundPos = validatePos(pos);
+        }
 
         return pos; 
+    }
+
+    bool validatePos(Vector3 newPos)
+    {
+        foreach (GameObject obj in pos)
+        {
+            Vector3 objPos = obj.transform.position;
+            if ((objPos.x + 10 < newPos.x && newPos.x < objPos.x - 10) ||
+                (objPos.z + 10 < newPos.z && newPos.z < objPos.z - 10))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
