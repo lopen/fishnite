@@ -14,11 +14,10 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject exitButton;
 
     [SerializeField] public GameObject musicSource;
-    [SerializeField] public Slider musicSlider;
+    [SerializeField] private Slider musicSlider;
 
     public bool pauseStatus = false;
     private bool settingsOpen = false;
-    private float musicVol;
 
     // Start is called before the first frame update
     void Start()

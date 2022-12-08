@@ -2288,6 +2288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 662267152}
   ingameMusic: {fileID: 947909138}
+  timer: {fileID: 416639329}
   gameRunning: 0
 --- !u!1 &805441539
 GameObject:
