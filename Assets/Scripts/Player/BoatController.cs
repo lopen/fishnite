@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoatController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BoatController : MonoBehaviour
     public float nitrusMeter = 0f; // essentially just how many seconds of nitrus you have
     public float maxNitrus = 4f;
     private bool boosting = false;
+
+    private Image nitrusM;
 
     Rigidbody boatRigidbody;
 
@@ -24,6 +27,7 @@ public class BoatController : MonoBehaviour
     {
         playerHealth = GetComponent<PlayerHealth>();
         boatRigidbody = GetComponent<Rigidbody>();
+        nitrusM = GameObject.FindGameObjectWithTag("NitrusMeter").GetComponent<Image>();
         leftFloaters = GameObject.FindGameObjectsWithTag("Left");
         rightFloaters = GameObject.FindGameObjectsWithTag("Right");
     }
@@ -31,8 +35,13 @@ public class BoatController : MonoBehaviour
     void Update()
     {
         // check if player is hitting nitrus button, if boosting then start nitrus
-        if (Input.GetKeyDown("n") && !boosting) {
+        if (Input.GetKeyDown("n") && !boosting && nitrusMeter > 0) {
+            //StartCoroutine(decreaseNitrusMeter(nitrusMeter));
             StartCoroutine(increaseSpeed(nitrusMeter));
+        }
+        if (boosting)
+        {
+            nitrusM.fillAmount -= 0.25f * Time.deltaTime;
         }
     }
 
@@ -67,6 +76,7 @@ public class BoatController : MonoBehaviour
     {
         // add nitrus to our nitrus counter
         if (nitrusMeter < maxNitrus) {
+            nitrusM.fillAmount += 0.25f;
             nitrusMeter++;
         }
     }
