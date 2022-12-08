@@ -42,4 +42,9 @@ public class Score : MonoBehaviour
     private void UpdateScore() {
         score1.text = score.ToString();
     }
+
+    public float getScore()
+    {
+        return score;
+    }
 }
