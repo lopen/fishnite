@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < Random.Range(8, 15); i++) 
         {
-            pos.Add(Instantiate(obstacle, getPos(false), Quaternion.identity));
+            pos.Add(Instantiate(obstacle, getPos(false), new Quaternion(0,Random.Range(0,180),0,0)));
         }
     }
 
@@ -67,8 +67,8 @@ public class Spawner : MonoBehaviour
         foreach (GameObject obj in pos)
         {
             Vector3 objPos = obj.transform.position;
-            if ((objPos.x + 2 < newPos.x && newPos.x < objPos.x - 2) ||
-                (objPos.z + 2 < newPos.z && newPos.z < objPos.z - 2))
+            if ((objPos.x + 10 < newPos.x && newPos.x < objPos.x - 10) ||
+                (objPos.z + 10 < newPos.z && newPos.z < objPos.z - 10))
             {
                 return false;
             }
