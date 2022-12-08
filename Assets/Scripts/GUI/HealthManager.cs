@@ -24,7 +24,7 @@ public class HealthManager : MonoBehaviour
     {
     }
 
-    GameObject createHeart(int i)
+    private GameObject createHeart(int i)
     {
         GameObject hearthContainer = new GameObject("heart" + i);
 
@@ -42,9 +42,9 @@ public class HealthManager : MonoBehaviour
         return hearthContainer;
     }
 
-    void grayHeart()
+    public void grayHeart()
     {
-        for (int i = hearts.Count; i >= 0; i--)
+        for (int i = hearts.Count - 1; i >= 0; i--)
         {
             if (changeHeartOpacity(i, 0.3f))
             {
@@ -53,7 +53,7 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    void ungrayHeart()
+    public void ungrayHeart()
     {
         for (int i = 0; i <= hearts.Count; i++)
         {

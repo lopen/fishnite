@@ -291,9 +291,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacle: {fileID: 789868304111640990, guid: 3987c3b7099e0a11b853c926a96ac90d, type: 3}
-  itemTime: {fileID: 2366413935296139444, guid: d6712aa953f2e2d4db94d8e02c47d814, type: 3}
-  itemPower: {fileID: 8770153834066014662, guid: 94f4d6af7c15e68408db01493999ce2b, type: 3}
   fishingSpot: {fileID: 4433856249924631096, guid: 7d19391ca5da8fa699b9635cfe21533c, type: 3}
+  powerups:
+  - {fileID: 2366413935296139444, guid: d6712aa953f2e2d4db94d8e02c47d814, type: 3}
+  - {fileID: 8770153834066014662, guid: 94f4d6af7c15e68408db01493999ce2b, type: 3}
+  - {fileID: 2703803541705363161, guid: 18d2ce5829328084eac87ecd355fa4a5, type: 3}
+  - {fileID: 5291935058353489438, guid: 2f8be2f11fd6e1c4ba74ea017e9755f8, type: 3}
   spawnRate: 5
 --- !u!1 &6799732841244199736
 GameObject:

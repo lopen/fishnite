@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeartPickup : MonoBehaviour
+public class HealthUp : MonoBehaviour
 {
     private PlayerHealth player;
     public AudioClip collectSound;
@@ -14,7 +14,7 @@ public class HeartPickup : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        player.increaseMaxHealth();
+        player.increaseHealth();
         AudioSource.PlayClipAtPoint(collectSound, transform.position);
         Destroy(gameObject);
     }

@@ -12,16 +12,17 @@ public class BoatController : MonoBehaviour
     public float maxNitrus = 4f;
     private bool boosting = false;
 
-    Vector3 movement;
-    Vector3 turnMovement;
     Rigidbody boatRigidbody;
 
     GameObject[] leftFloaters;
     GameObject[] rightFloaters;
 
+    private PlayerHealth playerHealth;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
         boatRigidbody = GetComponent<Rigidbody>();
         leftFloaters = GameObject.FindGameObjectsWithTag("Left");
         rightFloaters = GameObject.FindGameObjectsWithTag("Right");
@@ -81,5 +82,10 @@ public class BoatController : MonoBehaviour
         nitrusMeter = 0f; // we just use up all nitrus when a button is pressed
         speed = speed / boostMultiplier;
         turnSpeed = turnSpeed / boostMultiplier;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        playerHealth.decreaseHealth();
     }
 }

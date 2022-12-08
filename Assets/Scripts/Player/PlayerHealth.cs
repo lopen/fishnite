@@ -8,10 +8,13 @@ public class PlayerHealth : MonoBehaviour
     private int health = 3;
     private int maxHealth = 3;
     private bool alive = true;
+
+    private HealthManager healthManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthManager = GameObject.FindWithTag("HealthManager").GetComponent<HealthManager>();
     }
 
     // Update is called once per frame
@@ -28,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
         if (health < maxHealth)
         {
             health++;
+            healthManager.ungrayHeart();
         }
     }
 
@@ -36,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
         if (health > 0)
         {
             health--;
+            healthManager.grayHeart();
         } else
         {
             alive = false;
@@ -45,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
     public void increaseMaxHealth()
     {
         maxHealth++;
+        healthManager.addHeart();
     }
 
     public void decreaseMaxHealth()
@@ -55,6 +61,7 @@ public class PlayerHealth : MonoBehaviour
             if (health > maxHealth)
             {
                 health = maxHealth;
+                healthManager.removeHeart();
             }
         } else
         {
