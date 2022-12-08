@@ -8,11 +8,11 @@ public class Spawner : MonoBehaviour
     public GameObject obstacle;
     //Vector3[] obstaclePos;
     
-    public GameObject itemTime;
-    public GameObject itemPower;
     public GameObject fishingSpot;
 
-    public float spawnRate = 5.0f;
+    public List<GameObject> powerups;
+
+    public float spawnRate = 8.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +34,9 @@ public class Spawner : MonoBehaviour
 
         while (true) 
         {
-            Instantiate(itemTime, getPos(true), Quaternion.identity);
-            Instantiate(itemPower, getPos(true), Quaternion.identity); 
+            Instantiate(powerups[Random.Range(0, powerups.Count)], getPos(true), Quaternion.identity);
+            Instantiate(powerups[Random.Range(0, powerups.Count)], getPos(true), Quaternion.identity);
+            Instantiate(fishingSpot, getPos(true), Quaternion.identity);
             Instantiate(fishingSpot, getPos(true), Quaternion.identity);
 
             yield return new WaitForSeconds(spawnRate);  
