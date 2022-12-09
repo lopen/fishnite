@@ -7,8 +7,6 @@ public class Vendor : MonoBehaviour
     [SerializeField] private GameObject dialoguePrompt;
     [SerializeField] private GameObject GUI;
 
-    private bool canSell = false;
-
     // player instance
     private Player player;
     // players inventory, ItemData is fish
