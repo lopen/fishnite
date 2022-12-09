@@ -21,6 +21,7 @@ public class BoatController : MonoBehaviour
     [SerializeField] private AudioSource crashAudio;
     [SerializeField] private AudioSource hornAudio;
     [SerializeField] private AudioSource engineAudio;
+    [SerializeField] private AudioSource waterAudio;
  
     Rigidbody boatRigidbody;
 
@@ -54,6 +55,15 @@ public class BoatController : MonoBehaviour
             hornAudio.Play();
         }
         
+        if(GetComponent<Rigidbody>().velocity.magnitude > 0) {
+            if(!engineAudio.isPlaying) {
+                engineAudio.Play();
+            }
+
+            if(!waterAudio.isPlaying) {
+                waterAudio.Play();
+            }
+        }
     }
 
     void FixedUpdate()
@@ -71,11 +81,7 @@ public class BoatController : MonoBehaviour
             turn(lr);
         }
 
-        if(GetComponent<Rigidbody>().velocity.magnitude > 0) {
-            if(!engineAudio.isPlaying) {
-                engineAudio.Play();
-            }
-        }
+
     }
 
     void move(float fb)

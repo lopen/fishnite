@@ -37,7 +37,6 @@ public class SharkBehaviour : MonoBehaviour
     IEnumerator SharkBH () {
         while (sharkActive == true) {
             var distanceCheck = Vector3.Distance(PlayerPos.position, transform.position);
-            print(distanceCheck);
 
             if (sharkAttacking == false) {
                 transform.Rotate(0, 20f * Time.deltaTime, 0);
@@ -46,13 +45,14 @@ public class SharkBehaviour : MonoBehaviour
             
             if (distanceCheck < 20f) {
                 sharkAttacking = true;
-                print("shark ANGRY");
                 searchIndicator.SetActive(false);
                 attackIndicator.SetActive(true);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(PlayerPos.position - transform.position), RotationSpeed * Time.deltaTime);
                 transform.position += transform.forward * ChaseSpeed * Time.deltaTime;
             } else {
                 sharkAttacking = false;
+                attackIndicator.SetActive(false);
+                searchIndicator.SetActive(true);
             }
 
             yield return new WaitForSeconds(0.1f * Time.deltaTime);
@@ -62,12 +62,10 @@ public class SharkBehaviour : MonoBehaviour
     private void OnCollisionEnter(Collision other) {
         sharkAnims.SetBool("Attack", true);
         this.GetComponent<AudioSource>().Play();
-        print("shark collided");
     }
 
     private void OnCollisionExit(Collision other) {
         sharkAnims.SetBool("Moving", true);
         sharkAnims.SetBool("Attack", false);
-        print("leaving collision");
     }
 }
