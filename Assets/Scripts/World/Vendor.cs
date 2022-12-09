@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Vendor : MonoBehaviour
 {
+    [SerializeField] private GameObject dialoguePrompt;
+    [SerializeField] private GameObject GUI;
+
     private bool canSell = false;
     private GameObject player;
     private Score score;
     public GameObject smallfish;
     public GameObject morefish;
     public AudioClip sellSound;
+    private bool fishSold;
 
     private List<ItemData> playerInventory;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         score = GameObject.FindWithTag("Score").GetComponent<Score>();
+        fishSold = false;
     }
 
     // Update is called once per frame
@@ -41,9 +47,10 @@ public class Vendor : MonoBehaviour
             Debug.Log("You sold: " + fish.itemDisplayName + " for: " + fish.weight);
             AudioSource.PlayClipAtPoint(sellSound, transform.position);
             player.GetComponent<PlayerInv>().RemoveItem(fish);
+            fishSold = true;
         }
         //player.GetComponent<PlayerInv>().inventory.Clear();
-
+        
         checkScore();
     }
 
@@ -64,6 +71,7 @@ public class Vendor : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
             canSell = true;
+            //GameObject notif = 
         }
     }
 
@@ -71,5 +79,9 @@ public class Vendor : MonoBehaviour
         if (other.tag == "Player") {
             canSell = false;
         }
+        if(fishSold == true) {
+            GameObject notif = Instantiate(dialoguePrompt, GUI.transform);
+        }
+        fishSold = false;
     }
 }
