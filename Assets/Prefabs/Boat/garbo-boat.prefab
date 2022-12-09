@@ -1658,6 +1658,7 @@ GameObject:
   - component: {fileID: 192192557613366246}
   - component: {fileID: 7895822071007016575}
   - component: {fileID: 3170847828861405345}
+  - component: {fileID: 5840009787145460861}
   m_Layer: 0
   m_Name: garbo-boat
   m_TagString: Player
@@ -1745,6 +1746,11 @@ MonoBehaviour:
   maxNitrus: 4
   boatSmoke: {fileID: 0}
   boatAfterburner: {fileID: 0}
+  afterburnAudio: {fileID: 0}
+  crashAudio: {fileID: 0}
+  hornAudio: {fileID: 0}
+  engineAudio: {fileID: 0}
+  waterAudio: {fileID: 0}
 --- !u!114 &192192557613366246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1785,6 +1791,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 20}
   m_Center: {x: 0, y: 5, z: 2}
+--- !u!114 &5840009787145460861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4675798737247903223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903a8150e668a7fa7848e85feb6e8d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4675798737247903225
 GameObject:
   m_ObjectHideFlags: 0

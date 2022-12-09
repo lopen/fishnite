@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-
+    // WaveManger instance for easy access by floaters
     public static WaveManager instance;
-
+    
+    // our Wave functions, same as in the shader
     public Vector4 WaveA = new Vector4(1f, 0.2f, 0.1f, 10f);
     public Vector4 WaveB = new Vector4(0.3f, 0f, 0.1f, 10f);
     public Vector4 WaveC = new Vector4(1f, 0.1f, 0.1f, 15f);
@@ -17,7 +18,6 @@ public class WaveManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //Vector3 p = gridPoint;
         } 
         else if (instance != this) 
         {
@@ -31,6 +31,8 @@ public class WaveManager : MonoBehaviour
     {
     }
 
+    // returns the current height of the wave based on x and z positions
+    // takes into account all three waves
     public float getWaveHeight(float x, float z)
     {
         Vector3 p = new Vector3(x, 0, z);
@@ -43,6 +45,7 @@ public class WaveManager : MonoBehaviour
         return y;
     }
 
+    // gersnter wave calculation, same math as in the shader script
     float GerstnerWave(Vector4 wave, Vector3 point)
     {
         float s = wave.z;

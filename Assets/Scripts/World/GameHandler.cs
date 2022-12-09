@@ -8,10 +8,10 @@ public class GameHandler : MonoBehaviour
 {
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] public GameObject ingameMusic;
-    [SerializeField] public GameObject timer;
-    [SerializeField] public GameObject player;
+    [SerializeField] private Timer timer;
+    [SerializeField] private Player player;
     [SerializeField] private GameObject GUI;
-    [SerializeField] private GameObject score;
+    [SerializeField] private Score score;
 
     [SerializeField] private GameObject creditsLateCall;
     [SerializeField] private GameObject creditsPanel;
@@ -30,6 +30,9 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update / 
     private void Start() {
         gameRunning = true;
+        player = Player.instance;
+        timer = Timer.instance;
+        score = Score.instance;
         ingameMusic.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume", 0.3f);
         StartCoroutine(GameListener());
     }
@@ -58,7 +61,7 @@ public class GameHandler : MonoBehaviour
 
     IEnumerator GameListener() {
         while (gameRunning == true) {
-            if(timer.GetComponent<Timer>().GetCurrentTime() == "0000") {
+            if(timer.GetCurrentTime() == "0000") {
                 endStatus = 0;
                 EndGame();
             }
@@ -84,7 +87,7 @@ public class GameHandler : MonoBehaviour
                 gameOver.SetActive(true);
                 GUI.SetActive(false);
                 ingameMusic.SetActive(false);
-                endScore.text = score.GetComponent<Score>().GetScore().ToString("0000");
+                endScore.text = score.GetScore().ToString("0000");
                 Time.timeScale = 0;
                 StopCoroutine(GameListener());
             }
@@ -92,7 +95,7 @@ public class GameHandler : MonoBehaviour
     }
 
     public void EndGame() {
-        PlayerPrefs.SetFloat("HighScore", score.GetComponent<Score>().GetScore());
+        PlayerPrefs.SetFloat("HighScore", score.GetScore());
         gameRunning = false;
         creditsPanel.SetActive(true);
         creditsPanel.GetComponent<Image>().canvasRenderer.SetAlpha(0f);

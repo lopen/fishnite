@@ -3,10 +3,22 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
+    public static Score instance;
+
     private float score = 0f;
     [SerializeField] private TextMeshProUGUI score1;
 
     void Start() {
+        if (instance == null)
+        {
+            instance = this;
+        } 
+        else if (instance != this) 
+        {
+            Debug.Log("Instance already exists, destroying object!");
+            Destroy(this);
+        }
+
         ResetScore();
     }
 

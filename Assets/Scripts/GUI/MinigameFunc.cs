@@ -58,7 +58,7 @@ public class MinigameFunc : MonoBehaviour
 
 
     void Start() {
-        playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInv>();
+        playerInventory = Player.instance.GetComponent<PlayerInv>();
         fish = fishes[Random.Range(0, fishes.Count)];
         
         // get image object

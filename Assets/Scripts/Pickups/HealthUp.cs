@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class HealthUp : MonoBehaviour
 {
-    private PlayerHealth player;
+    private Player player;
     public AudioClip collectSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        player = Player.instance;
     }
     void OnTriggerEnter(Collider other)
     {
-        player.increaseHealth();
+        player.GetComponent<PlayerHealth>().increaseHealth();
         AudioSource.PlayClipAtPoint(collectSound, transform.position);
         Destroy(gameObject);
     }

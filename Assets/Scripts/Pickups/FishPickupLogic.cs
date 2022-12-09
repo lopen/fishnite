@@ -8,22 +8,28 @@ public class FishPickupLogic : MonoBehaviour
     [SerializeField] private GameObject minigame;
     private bool canFish = false;
 
-    private GameObject player;
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        player = Player.instance;
+        StartCoroutine(fishingTime());
     }
 
     //Update is called once per frame
-    void Update()
+    void Update() { }
+
+    IEnumerator fishingTime() 
     {
-        if (canFish) {  
-            if (Input.GetKeyDown("f")) {
-                Instantiate(minigame, (player.transform.position - player.transform.forward * 3 + player.transform.up * 2), player.transform.rotation);
-                Destroy(gameObject);
+        while (true) {
+            if (canFish) {  
+                if (Input.GetKeyDown("f")) {
+                    Instantiate(minigame, (player.transform.position - player.transform.forward * 3 + player.transform.up * 2), player.transform.rotation);
+                    Destroy(gameObject);
+                }
             }
+            yield return new WaitForSeconds(0.1f * Time.deltaTime);
         }
     }
 
