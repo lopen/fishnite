@@ -4,7 +4,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     
-    public float timeDuration = 3f * 10f;
+    public float timeDuration = 3f * 60f;
     private float timer;
 
     private float flashTimer;

@@ -3,15 +3,11 @@ using TMPro;
 
 public class Score : MonoBehaviour
 {
-    
     private float score = 0f;
     [SerializeField] private TextMeshProUGUI score1;
 
     void Start() {
         ResetScore();
-    }
-
-    void Update() {
     }
 
     public void IncreaseScore() {
@@ -40,11 +36,10 @@ public class Score : MonoBehaviour
     }
 
     private void UpdateScore() {
-        score1.text = score.ToString();
+        score1.text = score.ToString("0000");
     }
 
-    public float getScore()
-    {
+    public float GetScore() {
         return score;
     }
 }

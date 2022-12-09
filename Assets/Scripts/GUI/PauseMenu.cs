@@ -53,7 +53,13 @@ public class PauseMenu : MonoBehaviour
 
     // Quits the application, functional only during runtime to avoid misuse
     public void QuitGame() {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    // Quits the application, functional only during runtime to avoid misuse
+    public void ReloadGame() {
+        SceneManager.LoadScene("Lake");
+        Time.timeScale = 1;
     }
 
     // Resumes gameplay, sets timeScale

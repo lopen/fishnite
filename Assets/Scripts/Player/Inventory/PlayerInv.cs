@@ -1,21 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInv : MonoBehaviour
 {
+    public static event Action<List<ItemData>> OnInvChange;
+
+    public int invSize = 5;
     public List<ItemData> inventory = new List<ItemData>();
-    public int InvSize = 3;
-
-    private void Start() { }
-
-    private void Update() { }
+    
 
     public bool AddItem(ItemData itemData) 
     {
-        if (inventory.Count < InvSize) {
+        if (inventory.Count < invSize) {
             inventory.Add(itemData);
             print("Item Added to inv" + itemData.itemDisplayName);
+            OnInvChange?.Invoke(inventory);
             return true;
         } else {
             return false;
@@ -24,13 +25,14 @@ public class PlayerInv : MonoBehaviour
 
     public void RemoveItem(ItemData itemData) {
         inventory.Remove(itemData);
+        OnInvChange?.Invoke(inventory);
     }
 
     public void increaseInvSize() {
-        InvSize++;
+        invSize++;
     }
 
     public void decreaseInvSize() {
-        InvSize--;
+        invSize--;
     }
 }

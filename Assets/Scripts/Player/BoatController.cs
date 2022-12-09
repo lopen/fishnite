@@ -14,7 +14,14 @@ public class BoatController : MonoBehaviour
     private bool boosting = false;
 
     private Image nitrusM;
+    [SerializeField] private GameObject boatSmoke;
+    [SerializeField] private GameObject boatAfterburner;
 
+    [SerializeField] private AudioSource afterburnAudio;
+    [SerializeField] private AudioSource crashAudio;
+    [SerializeField] private AudioSource hornAudio;
+    [SerializeField] private AudioSource engineAudio;
+ 
     Rigidbody boatRigidbody;
 
     GameObject[] leftFloaters;
@@ -43,6 +50,10 @@ public class BoatController : MonoBehaviour
         {
             nitrusM.fillAmount -= 0.25f * Time.deltaTime;
         }
+        if (Input.GetKeyDown("h") && !hornAudio.isPlaying) {
+            hornAudio.Play();
+        }
+        
     }
 
     void FixedUpdate()
@@ -58,6 +69,12 @@ public class BoatController : MonoBehaviour
         if (lr != 0)
         {
             turn(lr);
+        }
+
+        if(GetComponent<Rigidbody>().velocity.magnitude > 0) {
+            if(!engineAudio.isPlaying) {
+                engineAudio.Play();
+            }
         }
     }
 
@@ -87,15 +104,24 @@ public class BoatController : MonoBehaviour
         boosting = true;
         speed = speed * boostMultiplier;
         turnSpeed = turnSpeed * boostMultiplier;
+        boatAfterburner.SetActive(true);
+        afterburnAudio.Play();
+        boatSmoke.GetComponent<ParticleSystem>().Pause();
         yield return new WaitForSeconds(nitrus);
         boosting = false;
         nitrusMeter = 0f; // we just use up all nitrus when a button is pressed
         speed = speed / boostMultiplier;
         turnSpeed = turnSpeed / boostMultiplier;
+        boatAfterburner.SetActive(false);
+        boatSmoke.GetComponent<ParticleSystem>().Play();
     }
 
     void OnCollisionEnter(Collision collision)
     {
         playerHealth.decreaseHealth();
+        if (!crashAudio.isPlaying)
+        {
+            crashAudio.Play();
+        }
     }
 }

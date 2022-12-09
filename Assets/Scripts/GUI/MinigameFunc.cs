@@ -3,10 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+
 using Random=UnityEngine.Random;
 
 public class MinigameFunc : MonoBehaviour
 {
+
+    public delegate void MinigameStart();
+    public static event MinigameStart MinigameLaunch;
+
+    public delegate void MinigameEnd();
+    public static event MinigameEnd MinigameFinish;
+
     [SerializeField] private GameObject minigameRef;
     [SerializeField] public Slider sliderUI;
     [SerializeField] private GameObject sliderObject;
@@ -22,6 +31,7 @@ public class MinigameFunc : MonoBehaviour
 
     [SerializeField] private GameObject lossScreen;
     [SerializeField] private GameObject winScreen;
+
     private GameObject trigger;
     private bool fishmoving = false;
     private float upDown = 0f;
@@ -58,6 +68,7 @@ public class MinigameFunc : MonoBehaviour
         StartCoroutine(UpdateSliderVal());
         GenerateTrigger();
         Time.timeScale = 0;
+        MinigameLaunch.Invoke();
     }
 
     // Update is called once per frame
@@ -116,6 +127,7 @@ public class MinigameFunc : MonoBehaviour
         yield return new WaitForSecondsRealtime(time);
         Destroy(minigameRef);
         Time.timeScale = 1;
+        MinigameFinish.Invoke();
     }
 
     private void ProgressStage() {
@@ -127,7 +139,7 @@ public class MinigameFunc : MonoBehaviour
         raiseCount++;
         runSlider = true;
         sliderUI.value = 0f;
-        if (raiseCount == 2) {
+        if (raiseCount == 1) {
             runSlider = false;
             
             winScreen.SetActive(true);
@@ -142,10 +154,10 @@ public class MinigameFunc : MonoBehaviour
     }
 
     private void DegressStage() {
-
         if (raiseCount > 0) {
             raiseCount--;
         }
+
         if (failCount > 0)
         {
             fishmoving = true;
@@ -154,6 +166,7 @@ public class MinigameFunc : MonoBehaviour
         }
         failCount++;
         hook.SetActive(true);
+
         if (failCount >= 2) {
             runSlider = false;
             //OnFailed();
@@ -166,8 +179,8 @@ public class MinigameFunc : MonoBehaviour
         } else if (failCount < 2) {
             runSlider = true;
         }
+
         sliderUI.value = 0f;
-        print(raiseCount);
     }
     IEnumerator moveFish(float time)
     {

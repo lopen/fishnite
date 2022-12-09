@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
    void Start() {
       musicSlider.value = this.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume", 0.3f);
       musicSlider.onValueChanged.AddListener(delegate {SetMusicVol();});
-      highScore.text = PlayerPrefs.GetFloat("HighScore", 0f).ToString("00000");
+      highScore.text = PlayerPrefs.GetFloat("HighScore", 0f).ToString("0000");
    
       settingsOpen = false;
    }
@@ -67,6 +67,7 @@ public class MainMenu : MonoBehaviour
 
    public void OpenScene(string sceneName) {
       SceneManager.LoadScene(sceneName);
+      Time.timeScale = 1;
    }
 
    public void QuitGame() {

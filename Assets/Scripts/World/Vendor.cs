@@ -40,19 +40,20 @@ public class Vendor : MonoBehaviour
             score.IncreaseScoreBy(fish.weight);
             Debug.Log("You sold: " + fish.itemDisplayName + " for: " + fish.weight);
             AudioSource.PlayClipAtPoint(sellSound, transform.position);
+            player.GetComponent<PlayerInv>().RemoveItem(fish);
         }
-        player.GetComponent<PlayerInv>().inventory.Clear();
+        //player.GetComponent<PlayerInv>().inventory.Clear();
 
         checkScore();
     }
 
     void checkScore()
     {
-        if (score.getScore() > 10)
+        if (score.GetScore() > 10)
         {
             // set first fish active
             smallfish.SetActive(true);
-            if (score.getScore() > 20)
+            if (score.GetScore() > 20)
             {
                 // mMOAR
                 morefish.SetActive(true);
