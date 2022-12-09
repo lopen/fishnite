@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smallfish: {fileID: 1400474104988389089}
   morefish: {fileID: 1985091228374310946}
-  sellSound: {fileID: 8300000, guid: aa65e6755750f069dad67ee14a586546, type: 3}
+  sellSound: {fileID: 8300000, guid: 0408310d1cbd0ff0e90da451916a2499, type: 3}
 --- !u!82 &412277743952118362
 AudioSource:
   m_ObjectHideFlags: 0

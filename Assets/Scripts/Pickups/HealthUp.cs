@@ -14,9 +14,11 @@ public class HealthUp : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        player.GetComponent<PlayerHealth>().increaseHealth();
-        AudioSource.PlayClipAtPoint(collectSound, transform.position);
-        Destroy(gameObject);
+        if (other.tag == "Player") {
+            player.GetComponent<PlayerHealth>().increaseHealth();
+            AudioSource.PlayClipAtPoint(collectSound, transform.position);
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
