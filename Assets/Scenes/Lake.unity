@@ -1248,23 +1248,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: d03da77ebc33d594ebc665ef8824aee3, type: 3}
---- !u!1 &678272886 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8997833672046996000, guid: 3318cd2d05cd3d63dbf23635a69d95a2, type: 3}
-  m_PrefabInstance: {fileID: 1516942179}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &678272892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 678272886}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4beadd925de1fed6b83684f347cf78c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &678509270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,6 +1381,10 @@ PrefabInstance:
       propertyPath: crashAudio
       value: 
       objectReference: {fileID: 1658799205}
+    - target: {fileID: 4126050322678659562, guid: e815b1257fc3d23d1970a39953fe9c65, type: 3}
+      propertyPath: engineAudio
+      value: 
+      objectReference: {fileID: 1769277559}
     - target: {fileID: 4126050322678659562, guid: e815b1257fc3d23d1970a39953fe9c65, type: 3}
       propertyPath: afterburnAudio
       value: 
@@ -3969,7 +3956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1769277558
 Transform:
   m_ObjectHideFlags: 0
@@ -3996,10 +3983,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0f105aa166ffdc24f8a0d90d14f02fee, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.058
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
