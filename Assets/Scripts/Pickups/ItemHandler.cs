@@ -9,7 +9,6 @@ public class ItemHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine("Flicker"); have the item flicker before it despawns
         Destroy(gameObject, removeTime);
     }
 

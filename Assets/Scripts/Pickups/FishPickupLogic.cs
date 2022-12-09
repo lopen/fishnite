@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class FishPickupLogic : MonoBehaviour
 {
-
+    // fishing minigame prefab
     [SerializeField] private GameObject minigame;
+    // if the player is in a trigger for fishing they can fish
     private bool canFish = false;
 
+    // player instance
     private Player player;
 
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class FishPickupLogic : MonoBehaviour
     //Update is called once per frame
     void Update() { }
 
+    // allows player to press "f" and start the minigame
     IEnumerator fishingTime() 
     {
         while (true) {
@@ -33,6 +36,7 @@ public class FishPickupLogic : MonoBehaviour
         }
     }
 
+    // have fishingspot move up and down with waves
     void FixedUpdate() 
     {
         float waveHeight = WaveManager.instance.getWaveHeight(transform.position.x, transform.position.z);
@@ -41,12 +45,14 @@ public class FishPickupLogic : MonoBehaviour
         }
     }
 
+    // if player is in trigger set canFish to true
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
             canFish = true;
         }
     }
 
+    // if player leaves trigger set canFish to false
     private void OnTriggerExit(Collider other) {
         if (other.tag == "Player") {
             canFish = false;

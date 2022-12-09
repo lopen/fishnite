@@ -5,26 +5,32 @@ using UnityEngine.UI;
 
 public class BoatController : MonoBehaviour
 {
+    // boat movement variables
     public float speed = 11f; 
     public float turnSpeed = 4f;
     public float boostMultiplier = 1.6f;
 
-    public float nitrusMeter = 0f; // essentially just how many seconds of nitrus you have
-    public float maxNitrus = 4f;
-    private bool boosting = false;
+    // nitrus variables 
+    public float nitrusMeter = 0f;  // essentially just how many seconds of nitrus you have
+    public float maxNitrus = 4f;    // max amount of nitrus possible to collect 
+    private bool boosting = false;  // if the player is boosting / using nitrus
+    private Image nitrusBar;          // the nitrus bar GUI element
 
-    private Image nitrusM;
+    // boat smoke and nitrus afterburner prefabs
     [SerializeField] private GameObject boatSmoke;
     [SerializeField] private GameObject boatAfterburner;
 
+    // audio itmes
     [SerializeField] private AudioSource afterburnAudio;
     [SerializeField] private AudioSource crashAudio;
     [SerializeField] private AudioSource hornAudio;
     [SerializeField] private AudioSource engineAudio;
     [SerializeField] private AudioSource waterAudio;
- 
+    
+    // boat rigidbody
     Rigidbody boatRigidbody;
 
+    // player health
     private PlayerHealth playerHealth;
 
     // Start is called before the first frame update
@@ -32,25 +38,26 @@ public class BoatController : MonoBehaviour
     {
         playerHealth = GetComponent<PlayerHealth>();
         boatRigidbody = GetComponent<Rigidbody>();
-        nitrusM = GameObject.FindGameObjectWithTag("NitrusMeter").GetComponent<Image>();
+        nitrusBar = GameObject.FindGameObjectWithTag("NitrusMeter").GetComponent<Image>();
     }
 
     void Update()
     {
-        // check if player is hitting nitrus button, if boosting then start nitrus
+        // check if player is hitting nitrus button, !boosting and nitrus > 0 then run nitrus meter down
         if (Input.GetKeyDown(KeyCode.LeftShift) && !boosting && nitrusMeter > 0) {
-            //StartCoroutine(decreaseNitrusMeter(nitrusMeter));
             StartCoroutine(increaseSpeed(nitrusMeter));
         }
+        // if boosting then decrease fillAmount of nitrus bar over time
         if (boosting)
         {
-            nitrusM.fillAmount -= 0.25f * Time.deltaTime;
+            nitrusBar.fillAmount -= 0.25f * Time.deltaTime;
         }
+        // honk the horn
         if (Input.GetKeyDown("h") && !hornAudio.isPlaying) {
             hornAudio.Play();
         }
-        
-        if(GetComponent<Rigidbody>().velocity.magnitude > 0) {
+        // boat audio    
+        if(boatRigidbody.velocity.magnitude > 0) {
             if(!engineAudio.isPlaying) {
                 engineAudio.Play();
             }
@@ -63,6 +70,7 @@ public class BoatController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // movement
         float lr = Input.GetAxisRaw("Horizontal"); // left right, lb
         float fb = Input.GetAxisRaw("Vertical");   // forward backward, fb
        
@@ -86,7 +94,6 @@ public class BoatController : MonoBehaviour
 
     void turn(float lr)
     {
-        //turnMovement.Set(lr, 0f, 0f);
         boatRigidbody.AddTorque(this.transform.up * turnSpeed  * lr);
     }
 
@@ -94,11 +101,12 @@ public class BoatController : MonoBehaviour
     {
         // add nitrus to our nitrus counter
         if (nitrusMeter < maxNitrus) {
-            nitrusM.fillAmount += 0.25f;
+            nitrusBar.fillAmount += 0.25f;
             nitrusMeter++;
         }
     }
 
+    // change player turn and movespeed and activate afterburner prefab
     IEnumerator increaseSpeed(float nitrus) 
     {
         boosting = true;
@@ -116,6 +124,7 @@ public class BoatController : MonoBehaviour
         boatSmoke.GetComponent<ParticleSystem>().Play();
     }
 
+    // if the player crashes into anything they will lose health
     void OnCollisionEnter(Collision collision)
     {
         playerHealth.decreaseHealth();
