@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Vendor : MonoBehaviour
 {
+    [SerializeField] private GameObject dialoguePrompt;
+    [SerializeField] private GameObject GUI;
+
+    private bool canSell = false;
+
     // player instance
     private Player player;
     // players inventory, ItemData is fish
@@ -19,6 +24,7 @@ public class Vendor : MonoBehaviour
     public GameObject morefish;
     // sound to play when fish is sold
     public AudioClip sellSound;
+    private bool fishSold = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +54,7 @@ public class Vendor : MonoBehaviour
             score.IncreaseScoreBy(fish.weight);
             AudioSource.PlayClipAtPoint(sellSound, transform.position);
             player.GetComponent<PlayerInv>().RemoveItem(fish);
-
+            fishSold = true;
             checkScore();
         }
     }
@@ -81,5 +87,9 @@ public class Vendor : MonoBehaviour
         if (other.tag == "Player") {
             canSell = false;
         }
+        if(fishSold == true) {
+            GameObject notif = Instantiate(dialoguePrompt, GUI.transform);
+        }
+        fishSold = false;
     }
 }

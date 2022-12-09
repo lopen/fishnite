@@ -43,7 +43,7 @@ public class SharkBehaviour : MonoBehaviour
                 transform.position += transform.forward * Time.deltaTime * ChaseSpeed;
             } 
             
-            if (distanceCheck < 20f) {
+            if (distanceCheck < 30f) {
                 sharkAttacking = true;
                 print("shark ANGRY");
                 searchIndicator.SetActive(false);

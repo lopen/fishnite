@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject GameHandler;
 
     [SerializeField] private GameObject resumeButton;
+    [SerializeField] private GameObject retryButton;
     [SerializeField] private GameObject settingsButton;
     [SerializeField] private GameObject exitButton;
 
@@ -42,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         SettingsMenuSelf.SetActive(false);
         
         resumeButton.SetActive(true);
+        retryButton.SetActive(true);
         settingsButton.SetActive(true);
         exitButton.SetActive(true);
 
@@ -77,6 +79,7 @@ public class PauseMenu : MonoBehaviour
         SettingsMenuSelf.SetActive(true);
         
         resumeButton.SetActive(false);
+        retryButton.SetActive(false);
         settingsButton.SetActive(false);
         exitButton.SetActive(false);
 
@@ -88,6 +91,7 @@ public class PauseMenu : MonoBehaviour
         SettingsMenuSelf.SetActive(false);
         PauseMenuSelf.SetActive(true);
         resumeButton.SetActive(true);
+        retryButton.SetActive(true);
         settingsButton.SetActive(true);
         exitButton.SetActive(true);
 
