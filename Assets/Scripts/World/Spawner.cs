@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-
-    public GameObject obstacle;
-
+    // position of obstacles, used to make sure powerups and fishingspots
+    // don't spawn ontop of rock terrain
     List<GameObject> pos = new List<GameObject>();
 
+    // GameObjects to be spawned 
+    // obstacles = large rock terrain, 
+    // fishingSpot = trigger object for activating minigame
+    // powerups = list of different powerup prefabs
+    public GameObject obstacle;
     public GameObject fishingSpot;
-
     public List<GameObject> powerups;
 
+    // how often we spawn a new set of items
     public float spawnRate = 8.0f;
 
     // Start is called before the first frame update
@@ -22,6 +26,7 @@ public class Spawner : MonoBehaviour
         StartCoroutine("spawnItems");
     }
 
+    // spawn initial rock terrain
     void spawnObstacles() 
     {
         for (int i = 0; i < Random.Range(8, 15); i++) 
@@ -30,6 +35,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    // Spawns two random powerups and two fishingspots per spawnRate (seconds)
     IEnumerator spawnItems()
     {
 
@@ -44,6 +50,9 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    // method to get a new Vector3 for object spawn
+    // takes bool to determine if item or not
+    // getPos spawns obstacles underwater as they are so large
     Vector3 getPos(bool item) 
     {
         bool foundPos = false;
@@ -62,13 +71,14 @@ public class Spawner : MonoBehaviour
         return pos; 
     }
 
+    // checks if a vector is near rock terrain obstacles
     bool validatePos(Vector3 newPos)
     {
         foreach (GameObject obj in pos)
         {
             Vector3 objPos = obj.transform.position;
-            if ((objPos.x + 1 > newPos.x && newPos.x > objPos.x - 1) ||
-                (objPos.z + 1 > newPos.z && newPos.z > objPos.z - 1))
+            if ((objPos.x + 2 > newPos.x && newPos.x > objPos.x - 2) ||
+                (objPos.z + 2 > newPos.z && newPos.z > objPos.z - 2))
             {
                 return false;
             }

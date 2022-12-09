@@ -25,9 +25,6 @@ public class BoatController : MonoBehaviour
  
     Rigidbody boatRigidbody;
 
-    GameObject[] leftFloaters;
-    GameObject[] rightFloaters;
-
     private PlayerHealth playerHealth;
 
     // Start is called before the first frame update
@@ -36,8 +33,6 @@ public class BoatController : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
         boatRigidbody = GetComponent<Rigidbody>();
         nitrusM = GameObject.FindGameObjectWithTag("NitrusMeter").GetComponent<Image>();
-        leftFloaters = GameObject.FindGameObjectsWithTag("Left");
-        rightFloaters = GameObject.FindGameObjectsWithTag("Right");
     }
 
     void Update()
@@ -106,7 +101,6 @@ public class BoatController : MonoBehaviour
 
     IEnumerator increaseSpeed(float nitrus) 
     {
-        // Reember to enable the nitrus booster on the boat
         boosting = true;
         speed = speed * boostMultiplier;
         turnSpeed = turnSpeed * boostMultiplier;

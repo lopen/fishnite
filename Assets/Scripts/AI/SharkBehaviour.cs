@@ -45,6 +45,7 @@ public class SharkBehaviour : MonoBehaviour
             
             if (distanceCheck < 20f) {
                 sharkAttacking = true;
+                print("shark ANGRY");
                 searchIndicator.SetActive(false);
                 attackIndicator.SetActive(true);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(PlayerPos.position - transform.position), RotationSpeed * Time.deltaTime);

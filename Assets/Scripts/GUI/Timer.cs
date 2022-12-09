@@ -4,6 +4,8 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     
+    public static Timer instance;
+
     public float timeDuration = 3f * 60f;
     private float timer;
 
@@ -18,6 +20,17 @@ public class Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sec2;
 
     void Start() {
+
+        if (instance == null)
+        {
+            instance = this;
+        } 
+        else if (instance != this) 
+        {
+            Debug.Log("Instance already exists, destroying object!");
+            Destroy(this);
+        }
+
         ResetTimer();
     }
 

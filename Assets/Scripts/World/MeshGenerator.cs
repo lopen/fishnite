@@ -7,8 +7,10 @@ using UnityEngine;
 
 public class MeshGenerator : MonoBehaviour
 {
+    // define our mesh
     Mesh mesh;
 
+    // lists for verticies and triangles
     Vector3[] vertices;
     int[] triangles;
 
@@ -18,6 +20,7 @@ public class MeshGenerator : MonoBehaviour
 
     void Start()
     {
+        // we only call this on start
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
@@ -32,6 +35,7 @@ public class MeshGenerator : MonoBehaviour
 
     void GenerateMesh(int xSize, int zSize)
     {
+        // set vertices size
         vertices = new Vector3[(xSize + 1) * (zSize + 1)];
         // populate vertices using xSize and zSize
         for (int i = 0, z = 0; z <= zSize; z++)
@@ -43,6 +47,7 @@ public class MeshGenerator : MonoBehaviour
             }
         }
 
+        // set triangles size
         triangles = new int[x * y * 6];
         int v = 0;
         int t = 0;
@@ -51,6 +56,7 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int i = 0; i < xSize; i++)
             {
+                // using offset we are able to setup all triangles between vertices
                 triangles[t + 0] = v + 0;
                 triangles[t + 1] = v + xSize + 1;
                 triangles[t + 2] = v + 1;
@@ -65,6 +71,7 @@ public class MeshGenerator : MonoBehaviour
         }
     }
 
+    // update our mesh with new vertices and triangles
     void UpdateMesh() 
     {
         mesh.Clear();

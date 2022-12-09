@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class TimeUp : MonoBehaviour
 {
-    private GameObject player;
-    private GameObject timer;
+    private Timer timer;
     public AudioClip collectSound;
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        timer = GameObject.FindWithTag("Timer");
+        timer = Timer.instance;
     }
 
     void OnTriggerEnter(Collider other) {
-        //player.GetComponent<PowerUpStore>().addPowerup(jet);s
-        AudioSource.PlayClipAtPoint(collectSound, transform.position);
-        timer.GetComponent<Timer>().BoostTime();
-        Destroy(gameObject);
+        if (other.tag == "Player") {
+            AudioSource.PlayClipAtPoint(collectSound, transform.position);
+            timer.BoostTime();
+            Destroy(gameObject);
+        }
     }
 
     void Update()

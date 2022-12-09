@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
+    public static HealthManager instance;
+
     private PlayerHealth playerHealth;
     public Sprite heart;
     private List<GameObject> hearts = new List<GameObject>();
@@ -12,7 +14,17 @@ public class HealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        if (instance == null)
+        {
+            instance = this;
+        } 
+        else if (instance != this) 
+        {
+            Debug.Log("Instance already exists, destroying object!");
+            Destroy(this);
+        }
+
+        playerHealth = Player.instance.GetComponent<PlayerHealth>();
         for (int i = 0; i < playerHealth.getHealth(); i++)
         {
             createHeart(i);
