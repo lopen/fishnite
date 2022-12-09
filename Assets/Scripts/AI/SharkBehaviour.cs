@@ -44,13 +44,15 @@ public class SharkBehaviour : MonoBehaviour
                 transform.position += transform.forward * Time.deltaTime * ChaseSpeed;
             } 
             
-            if (distanceCheck < 1f) {
+            if (distanceCheck < 20f) {
                 sharkAttacking = true;
                 print("shark ANGRY");
                 searchIndicator.SetActive(false);
                 attackIndicator.SetActive(true);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(PlayerPos.position - transform.position), RotationSpeed * Time.deltaTime);
                 transform.position += transform.forward * ChaseSpeed * Time.deltaTime;
+            } else {
+                sharkAttacking = false;
             }
 
             yield return new WaitForSeconds(0.1f * Time.deltaTime);
@@ -67,6 +69,5 @@ public class SharkBehaviour : MonoBehaviour
         sharkAnims.SetBool("Moving", true);
         sharkAnims.SetBool("Attack", false);
         print("leaving collision");
-        
     }
 }
