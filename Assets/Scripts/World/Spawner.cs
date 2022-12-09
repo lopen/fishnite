@@ -15,6 +15,10 @@ public class Spawner : MonoBehaviour
     public GameObject obstacle;
     public GameObject fishingSpot;
     public List<GameObject> powerups;
+    public GameObject shark;
+
+    // player instance
+    private Player player;
 
     // how often we spawn a new set of items
     public float spawnRate = 8.0f;
@@ -22,7 +26,12 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = Player.instance;
         spawnObstacles();
+        // create three sharks
+        Instantiate(shark, getPos(true), Quaternion.identity);
+        Instantiate(shark, getPos(true), Quaternion.identity);
+        Instantiate(shark, getPos(true), Quaternion.identity);
         StartCoroutine("spawnItems");
     }
 
@@ -78,7 +87,9 @@ public class Spawner : MonoBehaviour
         {
             Vector3 objPos = obj.transform.position;
             if ((objPos.x + 2 > newPos.x && newPos.x > objPos.x - 2) ||
-                (objPos.z + 2 > newPos.z && newPos.z > objPos.z - 2))
+                (objPos.z + 2 > newPos.z && newPos.z > objPos.z - 2) ||
+                (player.transform.position.x + 2 > newPos.x && newPos.x > player.transform.position.x - 2) ||
+                (player.transform.position.z + 2 > newPos.z && newPos.z > player.transform.position.z - 2))
             {
                 return false;
             }

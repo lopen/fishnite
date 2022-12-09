@@ -61,12 +61,16 @@ public class SharkBehaviour : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        sharkAnims.SetBool("Attack", true);
-        this.GetComponent<AudioSource>().Play();
+        if (other.gameObject.tag == "Player") {
+            sharkAnims.SetBool("Attack", true);
+            this.GetComponent<AudioSource>().Play();
+        }
     }
 
     private void OnCollisionExit(Collision other) {
-        sharkAnims.SetBool("Moving", true);
-        sharkAnims.SetBool("Attack", false);
+        if (other.gameObject.tag == "Player") {
+            sharkAnims.SetBool("Moving", true);
+            sharkAnims.SetBool("Attack", false);
+        }
     }
 }

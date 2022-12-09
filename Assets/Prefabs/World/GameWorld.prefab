@@ -291,6 +291,7 @@ MonoBehaviour:
   - {fileID: 8770153834066014662, guid: 94f4d6af7c15e68408db01493999ce2b, type: 3}
   - {fileID: 2703803541705363161, guid: 18d2ce5829328084eac87ecd355fa4a5, type: 3}
   - {fileID: 5291935058353489438, guid: 2f8be2f11fd6e1c4ba74ea017e9755f8, type: 3}
+  shark: {fileID: 3177214620205643668, guid: c1798281c14ffb647b4d0c2d3e8e6d70, type: 3}
   spawnRate: 5
 --- !u!1 &6799732841244199736
 GameObject:
