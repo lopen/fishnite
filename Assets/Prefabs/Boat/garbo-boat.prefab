@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9694eb982842088a8470b8e1b8a068e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 4126050322678659563}
   depthBeforeSubmerged: 1
   displacementAmount: 3
   floaterCounter: 4
@@ -94,7 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9694eb982842088a8470b8e1b8a068e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 4126050322678659563}
   depthBeforeSubmerged: 1
   displacementAmount: 3
   floaterCounter: 4
@@ -144,7 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9694eb982842088a8470b8e1b8a068e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 4126050322678659563}
   depthBeforeSubmerged: 1
   displacementAmount: 3
   floaterCounter: 4
@@ -1658,6 +1655,7 @@ GameObject:
   - component: {fileID: 192192557613366246}
   - component: {fileID: 7895822071007016575}
   - component: {fileID: 3170847828861405345}
+  - component: {fileID: 5840009787145460861}
   m_Layer: 0
   m_Name: garbo-boat
   m_TagString: Player
@@ -1745,6 +1743,11 @@ MonoBehaviour:
   maxNitrus: 4
   boatSmoke: {fileID: 0}
   boatAfterburner: {fileID: 0}
+  afterburnAudio: {fileID: 0}
+  crashAudio: {fileID: 0}
+  hornAudio: {fileID: 0}
+  engineAudio: {fileID: 0}
+  waterAudio: {fileID: 0}
 --- !u!114 &192192557613366246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1785,6 +1788,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 20}
   m_Center: {x: 0, y: 5, z: 2}
+--- !u!114 &5840009787145460861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4675798737247903223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903a8150e668a7fa7848e85feb6e8d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4675798737247903225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,7 +2144,6 @@ GameObject:
   - component: {fileID: 6737877505071241536}
   - component: {fileID: 6737877505071241537}
   - component: {fileID: 6737877505071241542}
-  - component: {fileID: 225345661821795097}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -2216,18 +2230,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boat: {fileID: 4675798737247903223}
---- !u!114 &225345661821795097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6737877505071241538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 276d4a27f34c51c888d878674f485bc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &638410547318101533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2254,7 +2256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4340455032323876841, guid: da5821db66e19c34eb11cc2d22af3d0c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -9.91
       objectReference: {fileID: 0}
     - target: {fileID: 4340455032323876841, guid: da5821db66e19c34eb11cc2d22af3d0c, type: 3}
       propertyPath: m_LocalRotation.w

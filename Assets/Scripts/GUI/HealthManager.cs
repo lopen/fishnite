@@ -5,14 +5,32 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
+    // define instance
+    public static HealthManager instance;
+
+    // player health
     private PlayerHealth playerHealth;
+
+    // heart sprite
     public Sprite heart;
+    // current drawn hearts so they can be grayed out
     private List<GameObject> hearts = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        if (instance == null)
+        {
+            instance = this;
+        } 
+        else if (instance != this) 
+        {
+            Debug.Log("Instance already exists, destroying object!");
+            Destroy(this);
+        }
+
+        // generate starting hearts based on players start health
+        playerHealth = Player.instance.GetComponent<PlayerHealth>();
         for (int i = 0; i < playerHealth.getHealth(); i++)
         {
             createHeart(i);
@@ -20,10 +38,10 @@ public class HealthManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-    }
+    void Update() { }
 
+    // create a heart contaienr with the heart sprite in it.
+    // name of object is heart + i 
     private GameObject createHeart(int i)
     {
         GameObject hearthContainer = new GameObject("heart" + i);
@@ -42,6 +60,7 @@ public class HealthManager : MonoBehaviour
         return hearthContainer;
     }
 
+    // change heart opacity to 0.3f
     public void grayHeart()
     {
         for (int i = hearts.Count - 1; i >= 0; i--)
@@ -53,6 +72,7 @@ public class HealthManager : MonoBehaviour
         }
     }
 
+    // change heart opacity to 1f 
     public void ungrayHeart()
     {
         for (int i = 0; i <= hearts.Count; i++)
@@ -64,6 +84,7 @@ public class HealthManager : MonoBehaviour
         }
     }
 
+    // if heart opacity is not equal to f then set it to f
     bool changeHeartOpacity(int i, float f)
     {
         Image img = hearts[i].GetComponent<Image>();
@@ -76,13 +97,15 @@ public class HealthManager : MonoBehaviour
         return false;
     }
 
+    // add a new heart to the GUI
     public void addHeart()
     {
         createHeart(hearts.Count);
         // set opacity to 0.3f
         changeHeartOpacity(hearts.Count - 1, 0.3f);
     }
-
+    
+    // remove heart from list of hearts
     public void removeHeart()
     {
         hearts.RemoveAt(hearts.Count - 1);

@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-
+    // player health
     public int health = 3;
+    // max player health, can increase
     private int maxHealth = 3;
-    private bool alive = true;
+    // hard limit on how much maxHealth can increase
+    private int hardHealthLimit = 5;
 
+    // healthmanager instance, for GUI hearts
     private HealthManager healthManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        healthManager = GameObject.FindWithTag("HealthManager").GetComponent<HealthManager>();
+        healthManager = HealthManager.instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!alive)
-        {
-            // end game
-        }
     }
 
+    // increase health if below maxHealth
     public void increaseHealth()
     {
         if (health < maxHealth)
@@ -35,24 +35,26 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    // decrease health if its larger than 0
     public void decreaseHealth()
     {
         if (health > 0)
         {
             health--;
             healthManager.grayHeart();
-        } else
-        {
-            alive = false;
         }
     }
 
+    // increase maxHealth, but not more than hard limit, also add GUI heart
     public void increaseMaxHealth()
     {
-        maxHealth++;
-        healthManager.addHeart();
+        if (maxHealth < hardHealthLimit) {
+            maxHealth++;
+            healthManager.addHeart();
+        }
     }
 
+    // decrease maxHealth, not really used much
     public void decreaseMaxHealth()
     {
         if (maxHealth > 0)
@@ -63,17 +65,16 @@ public class PlayerHealth : MonoBehaviour
                 health = maxHealth;
                 healthManager.removeHeart();
             }
-        } else
-        {
-            alive = false;
         }
     }
 
+    // get health
     public int getHealth()
     {
         return health;
     }
 
+    // get max health
     public int getMaxHealth()
     {
         return maxHealth;
