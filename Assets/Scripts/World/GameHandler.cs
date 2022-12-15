@@ -6,28 +6,27 @@ using TMPro;
 
 public class GameHandler : MonoBehaviour
 {
-    [SerializeField] public GameObject pauseMenu;
-    [SerializeField] public GameObject ingameMusic;
-    [SerializeField] private Timer timer;
-    [SerializeField] private Player player;
-    [SerializeField] private GameObject GUI;
-    [SerializeField] private Score score;
+    [SerializeField] public GameObject pauseMenu; // Referene to pause menu
+    [SerializeField] public GameObject ingameMusic; // Reference to ingame music object
+    [SerializeField] private Timer timer; // Reference to ingame timer
+    [SerializeField] private Player player; // Reference to player object
+    [SerializeField] private GameObject GUI; // Reference to GUI
+    [SerializeField] private Score score; // Reference to ingame score counter
 
-    [SerializeField] private GameObject creditsLateCall;
-    [SerializeField] private GameObject creditsPanel;
-    [SerializeField] private GameObject retryButton;
-    [SerializeField] private GameObject returnMenu;
-    [SerializeField] private GameObject gameOver;
-    [SerializeField] private TextMeshProUGUI endScore;
+    [SerializeField] private GameObject creditsLateCall; // Reference to credit screen, used for late calling buttons to appear after fade
+    [SerializeField] private GameObject creditsPanel; // Reference to credits overall panel
+    [SerializeField] private GameObject retryButton; // Reference to retry button
+    [SerializeField] private GameObject returnMenu; // Reference to return to menu button
+    [SerializeField] private GameObject gameOver; // Reference to game over text
+    [SerializeField] private TextMeshProUGUI endScore; // Reference to end game score
 
+    [SerializeField] private GameObject healthGone; // Reference to health gone fail condition text
+    [SerializeField] private GameObject timeGone; // Reference to time up fail condition text
 
-    [SerializeField] private GameObject healthGone;
-    [SerializeField] private GameObject timeGone;
+    public bool gameRunning; // Status bool for game running check
+    private int endStatus; // Status bool for end game check
 
-    public bool gameRunning;
-    private int endStatus;
-
-    // Start is called before the first frame update / 
+    // Start is called before the first frame update / Assigns instances as well as player pref values, as well as starting our game listener co-routine
     private void Start() {
         gameRunning = true;
         player = Player.instance;
@@ -45,20 +44,24 @@ public class GameHandler : MonoBehaviour
         }
     }
 
+    // Event listener for minigame
     private void OnEnable() {
         MinigameFunc.MinigameLaunch += HideGUI;
         MinigameFunc.MinigameFinish += ShowGUI;
     }
 
+    // Event listener for minigame
     private void OnDisable() {
         MinigameFunc.MinigameLaunch -= HideGUI;
         MinigameFunc.MinigameFinish -= ShowGUI;
     }
 
+    // Sets game status, used for co-routine
     public void SetGameStatus(bool status) {
         gameRunning = status;
     }
 
+    // Main game listener co-routine, used for calling end game function and late calls to credit screen
     IEnumerator GameListener() {
         while (gameRunning == true) {
             if(timer.GetCurrentTime() == "0000") {
@@ -94,6 +97,7 @@ public class GameHandler : MonoBehaviour
         }
     }
 
+    // End game function for setting high score and fade in
     public void EndGame() {
         PlayerPrefs.SetFloat("HighScore", score.GetScore());
         gameRunning = false;
@@ -102,10 +106,12 @@ public class GameHandler : MonoBehaviour
         creditsPanel.GetComponent<Image>().CrossFadeAlpha(255.0f, 200.0f, false);
     }
 
+    // GUI fade method
     private void HideGUI() {
         GUI.GetComponent<CanvasGroup>().alpha = 0;
     }
 
+    // // GUI show method
     private void ShowGUI() {
         GUI.GetComponent<CanvasGroup>().alpha = 1;
     }

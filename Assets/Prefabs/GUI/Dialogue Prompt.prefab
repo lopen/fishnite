@@ -131,7 +131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -401.06177, w: 724.0087}
+  m_margin: {x: 0, y: 0, z: -492.08282, w: 724.0087}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 1275588932276752744}
   dialogueObject: {fileID: 1275588933452323592}
-  fullDialogue: TRIG GIVE FISH!
+  fullDialogue: TRIG GIVE FISH
 --- !u!82 &1275588932276752750
 AudioSource:
   m_ObjectHideFlags: 0

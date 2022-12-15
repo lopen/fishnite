@@ -5,29 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject PauseMenuSelf;
-    [SerializeField] private GameObject SettingsMenuSelf;
-    [SerializeField] private GameObject GameHandler;
+    [SerializeField] private GameObject PauseMenuSelf; // Reference to self GameObject
+    [SerializeField] private GameObject SettingsMenuSelf; // Reference to settings menu GameObject
+    [SerializeField] private GameObject GameHandler; // Reference to game handler
 
-    [SerializeField] private GameObject resumeButton;
-    [SerializeField] private GameObject retryButton;
-    [SerializeField] private GameObject settingsButton;
-    [SerializeField] private GameObject exitButton;
+    [SerializeField] private GameObject resumeButton; // Reference to self GameObject
+    [SerializeField] private GameObject retryButton; // Self reference to retry button
+    [SerializeField] private GameObject settingsButton; // Self reference to settings button
+    [SerializeField] private GameObject exitButton; // Self reference to exit button
 
-    [SerializeField] public GameObject musicSource;
-    [SerializeField] private Slider musicSlider;
+    [SerializeField] public GameObject musicSource; // Reference to music source
+    [SerializeField] private Slider musicSlider; // Reference to settings music slider
 
-    public bool pauseStatus = false;
-    private bool settingsOpen = false;
+    public bool pauseStatus = false; // Status bool for checking current pause status, used to determine user input response
+    private bool settingsOpen = false; // Status bool for checking current settings status, used to determine user input response
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update / Used for grabbing playerpref for music volume and setting listener for change during timescale 0
     void Start()
     {
         musicSlider.value = musicSource.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("MusicVolume", 0.3f);
         musicSlider.onValueChanged.AddListener(delegate {SetMusicVol();});
     }
 
-    // Update is called once per frame
+    // Update is called once per frame / Listens for user input
     void Update()
     {
         if (Input.GetKeyDown("escape") && pauseStatus == true && settingsOpen == false) {

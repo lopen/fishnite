@@ -7,20 +7,20 @@ using UnityEngine;
 
 public class MeshGenerator : MonoBehaviour
 {
-    // define our mesh
+    // Define our mesh
     Mesh mesh;
 
-    // lists for verticies and triangles
+    // Lists for verticies and triangles
     Vector3[] vertices;
     int[] triangles;
 
-    // length and width for mesh gen
+    // Length and width for mesh gen
     public int x = 150;
     public int y = 150;
 
+    // Start is called before the first frame update, assigns components and meshes
     void Start()
     {
-        // we only call this on start
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
 
@@ -29,15 +29,12 @@ public class MeshGenerator : MonoBehaviour
 
     }
 
-    void Update()
-    {
-    }
-
+    // Method for generating mesh
     void GenerateMesh(int xSize, int zSize)
     {
-        // set vertices size
+        // Set vertices size
         vertices = new Vector3[(xSize + 1) * (zSize + 1)];
-        // populate vertices using xSize and zSize
+        // Populate vertices using xSize and zSize
         for (int i = 0, z = 0; z <= zSize; z++)
         {
             for (int x = 0; x <= xSize; x++)
@@ -47,16 +44,16 @@ public class MeshGenerator : MonoBehaviour
             }
         }
 
-        // set triangles size
+        // Set triangles size
         triangles = new int[x * y * 6];
         int v = 0;
         int t = 0;
-        // populate triangles using offsets and xSize and ySize
+        // Populate triangles using offsets and xSize and ySize
         for (int j = 0; j < zSize; j++)
         {
             for (int i = 0; i < xSize; i++)
             {
-                // using offset we are able to setup all triangles between vertices
+                // Using offset we are able to setup all triangles between vertices
                 triangles[t + 0] = v + 0;
                 triangles[t + 1] = v + xSize + 1;
                 triangles[t + 2] = v + 1;
@@ -71,7 +68,7 @@ public class MeshGenerator : MonoBehaviour
         }
     }
 
-    // update our mesh with new vertices and triangles
+    // Update our mesh with new vertices and triangles
     void UpdateMesh() 
     {
         mesh.Clear();

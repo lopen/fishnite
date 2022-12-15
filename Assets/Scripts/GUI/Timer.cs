@@ -3,22 +3,23 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    
-    public static Timer instance;
+    public static Timer instance; // Timer instance
 
-    public float timeDuration = 3f * 60f;
-    private float timer;
+    public float timeDuration = 2f * 60f; // Amount of timer time
+    private float timer; // Timer amount
 
-    private float flashTimer;
-    private float flashDuration = 1f;
-    public string currentTime;
+    private float flashTimer; // Flash for when time is up
+    private float flashDuration = 1f; // Time-up flash speed
+    public string currentTime; // String for formatting time
 
-    [SerializeField] private TextMeshProUGUI min1;
-    [SerializeField] private TextMeshProUGUI min2;
-    [SerializeField] private TextMeshProUGUI seperator;
-    [SerializeField] private TextMeshProUGUI sec1;
-    [SerializeField] private TextMeshProUGUI sec2;
+    // Timer is laid out in digital format
+    [SerializeField] private TextMeshProUGUI min1; // Reference to minute 1
+    [SerializeField] private TextMeshProUGUI min2; // Reference to minute 2
+    [SerializeField] private TextMeshProUGUI seperator; // Reference to seperator
+    [SerializeField] private TextMeshProUGUI sec1; // Reference to second 1
+    [SerializeField] private TextMeshProUGUI sec2; // Reference to second 2
 
+    // Start is called before the first frame update / Handles instance checking for timer
     void Start() {
 
         if (instance == null)
@@ -34,6 +35,7 @@ public class Timer : MonoBehaviour
         ResetTimer();
     }
 
+    // Update is called once per frame / Stores current time value
     void Update() {
         if(timer > 0) {
             timer -= Time.deltaTime;
@@ -43,18 +45,22 @@ public class Timer : MonoBehaviour
         }
     }
 
+    // Boost time method, used by powerups
     public void BoostTime() {
         timer += 20;
     }
 
+    // Reduce time method, used by powerups
     public void ReduceTime() {
         timer += 20;
     }
 
+    // Reset timer, used on level end
     private void ResetTimer() {
         timer = timeDuration;
     }
 
+    // Update display method / Formats current time into a digital format
     private void UpdateDisplay(float time) {
         float mins = Mathf.FloorToInt(time / 60);
         float secs = Mathf.FloorToInt(time % 60);
@@ -67,6 +73,7 @@ public class Timer : MonoBehaviour
         sec2.text = currentTime[3].ToString();
     }
 
+    // Flash method / When time is up, enables flashing of clock
     private void Flash() {
         if (timer != 0) {
             timer = 0;
@@ -84,6 +91,7 @@ public class Timer : MonoBehaviour
         }
     }
 
+    // Method for setting display status
     private void SetDisplay(bool status) {
         min1.enabled = status;
         min2.enabled = status;
@@ -94,6 +102,7 @@ public class Timer : MonoBehaviour
         sec2.enabled = status;
     }
 
+    // Method for returning current time
     public string GetCurrentTime() {
         return currentTime;
     }

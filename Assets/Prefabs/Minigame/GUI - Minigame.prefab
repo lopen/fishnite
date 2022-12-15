@@ -90,7 +90,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1491394663747832986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,6 +1693,7 @@ MonoBehaviour:
   hook: {fileID: 1491394665316478310}
   hookPoint: {fileID: 1491394664337302400}
   playerAnims: {fileID: 1998072875888823348}
+  FishAnims: {fileID: 0}
   fishingLine: {fileID: 1491394664836908295}
   triggerZone: {fileID: 9000636905440141279, guid: 3750df3e513137041b37771d91026d2d, type: 3}
   triggerObject: {fileID: 2241051753533485493}
@@ -2195,7 +2196,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOU ABSOLUTE FUCKING LOSER
+  m_text: '            YOU LOST!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5c230c164e901bb419d818cb14ebdd6c, type: 2}
   m_sharedMaterial: {fileID: -7434477599656211036, guid: 5c230c164e901bb419d818cb14ebdd6c, type: 2}

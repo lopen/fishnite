@@ -196,7 +196,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: aa
+  m_text: Well done!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5c230c164e901bb419d818cb14ebdd6c, type: 2}
   m_sharedMaterial: {fileID: -7434477599656211036, guid: 5c230c164e901bb419d818cb14ebdd6c, type: 2}
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 4130766292055614951}
   dialogueObject: {fileID: 4130766293761492964}
-  fullDialogue: TRIG GIVE FISH!
+  fullDialogue: Good job!
 --- !u!82 &4130766292055614949
 AudioSource:
   m_ObjectHideFlags: 0
@@ -573,7 +573,6 @@ GameObject:
   - component: {fileID: 4130766293761492991}
   - component: {fileID: 4130766293761492984}
   - component: {fileID: 4130766293761492985}
-  - component: {fileID: 4130766293761492986}
   - component: {fileID: 4130766293761492990}
   m_Layer: 5
   m_Name: UI Notifs
@@ -659,21 +658,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
   m_EffectDistance: {x: 10, y: 25}
   m_UseGraphicAlpha: 1
---- !u!114 &4130766293761492986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4130766293761492964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44532a6c9261a6e439cd28c92db02b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventorySlots: []
-  invSlotPrefab: {fileID: 1673061205866001002, guid: d03da77ebc33d594ebc665ef8824aee3, type: 3}
-  invsize: 5
 --- !u!95 &4130766293761492990
 Animator:
   serializedVersion: 4

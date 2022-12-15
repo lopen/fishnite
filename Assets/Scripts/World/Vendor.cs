@@ -7,20 +7,20 @@ public class Vendor : MonoBehaviour
     [SerializeField] private GameObject dialoguePrompt;
     [SerializeField] private GameObject GUI;
 
-    // player instance
+    // Player instance
     private Player player;
-    // players inventory, ItemData is fish
+    // Players inventory, ItemData is fish
     private List<ItemData> playerInventory;
 
-    // score instance
+    // Score instance
     private Score score;
     
-    // to check if the player can sell fish near the vendor
+    // To check if the player can sell fish near the vendor
     private bool canSell = false;
-    // prefabs used to visualize fish sold
+    // Prefabs used to visualize fish sold
     public GameObject smallfish;
     public GameObject morefish;
-    // sound to play when fish is sold
+    // Sound to play when fish is sold
     public AudioClip sellSound;
     private bool fishSold = false;
 
@@ -42,8 +42,7 @@ public class Vendor : MonoBehaviour
         }
     }
 
-    // sell last fish in inventory and removes it from the player
-    // while playing sound and checking score
+    // Sell last fish in inventory and removes it from the player while playing sound and checking score
     void sellFish() 
     {
         playerInventory = player.GetComponent<PlayerInv>().inventory;
@@ -57,30 +56,29 @@ public class Vendor : MonoBehaviour
         }
     }
 
-    // checks the current score and updates the barrel on the dock
-    // with more fish
+    // Checks the current score and updates the barrel on the dock with more fish
     void checkScore()
     {
         if (score.GetScore() > 10)
         {
-            // set first fishbarrel prefab active
+            // Set first fishbarrel prefab active
             smallfish.SetActive(true);
             if (score.GetScore() > 20)
             {
-                // set the second fishbarrel prefab active
+                // Set the second fishbarrel prefab active
                 morefish.SetActive(true);
             }
         }
     }
 
-    // if player enters vendor trigger, allow player to sell
+    // If player enters vendor trigger, allow player to sell
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "Player") {
             canSell = true;
         }
     }
 
-    // if player exits vendor trigger, remove player sell ability
+    // If player exits vendor trigger, remove player sell ability
     private void OnTriggerExit(Collider other) {
         if (other.tag == "Player") {
             canSell = false;

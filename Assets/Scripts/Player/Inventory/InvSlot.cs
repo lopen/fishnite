@@ -6,14 +6,16 @@ using UnityEngine.UI;
 
 public class InvSlot : MonoBehaviour
 {
-    public Image invIcon;
-    public TextMeshProUGUI invItemName;
+    public Image invIcon; // Inv slot icon
+    public TextMeshProUGUI invItemName; // Inv slot name
 
+    // Method for clearing inv slot
     public void ClearInvSlot() {
         invIcon.enabled = false;
         invItemName.enabled = false;
     }
 
+    // Method for creating inv slot
     public void CreateInvSlot(ItemData itemData) {
         if(itemData == null) {
             ClearInvSlot();
@@ -24,10 +26,5 @@ public class InvSlot : MonoBehaviour
         invItemName.enabled = true;
         invIcon.sprite = itemData.itemIcon;
         invItemName.text = itemData.itemDisplayName;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

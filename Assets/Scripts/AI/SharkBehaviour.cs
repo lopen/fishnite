@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class SharkBehaviour : MonoBehaviour
 {
-    private Transform PlayerPos;
-    private float RotationSpeed = 3.0f;
-    private float ChaseSpeed = 3.0f;
-    public bool sharkAttacking;
-    public bool sharkActive;
+    private Transform PlayerPos; // Player position
+    private float RotationSpeed = 3.0f; // Speed of turning
+    private float ChaseSpeed = 3.0f; // Speed of chase
+    public bool sharkAttacking; // Shark current attack status, used for setting indication
+    public bool sharkActive; // Shark active status (for running enumerator)
 
-    [SerializeField] private GameObject searchIndicator;
-    [SerializeField] private GameObject attackIndicator;
+    [SerializeField] private GameObject searchIndicator; // Indicator for searching status
+    [SerializeField] private GameObject attackIndicator; // Indicator for attackingstatus
 
-    [SerializeField] private Animator sharkAnims;
-    private MeshCollider sharkCollider;
+    [SerializeField] private Animator sharkAnims; // Animations for shark (moving & attack)
+    private MeshCollider sharkCollider; // Shark mesh collider
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update / Handles variable assignment
     void Start()
     {
-        PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        PlayerPos = Player.instance.transform;
         sharkAttacking = false;
         sharkActive = true;
         sharkCollider = this.GetComponent<MeshCollider>();
@@ -28,12 +28,7 @@ public class SharkBehaviour : MonoBehaviour
         StartCoroutine(SharkBH());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    // Co-routine for shark behaviour
+    // Co-routine for shark behaviour / Handles calculations for distance, status indication and chase calculation
     IEnumerator SharkBH () {
         while (sharkActive == true) {
             var distanceCheck = Vector3.Distance(PlayerPos.position, transform.position);
@@ -45,7 +40,6 @@ public class SharkBehaviour : MonoBehaviour
             
             if (distanceCheck < 30f) {
                 sharkAttacking = true;
-                print("shark ANGRY");
                 searchIndicator.SetActive(false);
                 attackIndicator.SetActive(true);
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(PlayerPos.position - transform.position), RotationSpeed * Time.deltaTime);
@@ -60,6 +54,7 @@ public class SharkBehaviour : MonoBehaviour
         }
     }
 
+    // Called on collision enter, sets shark status, audio output and animation
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == "Player") {
             sharkAnims.SetBool("Attack", true);
@@ -67,6 +62,7 @@ public class SharkBehaviour : MonoBehaviour
         }
     }
 
+    // Called on collision exit, sets shark status & animation
     private void OnCollisionExit(Collision other) {
         if (other.gameObject.tag == "Player") {
             sharkAnims.SetBool("Moving", true);

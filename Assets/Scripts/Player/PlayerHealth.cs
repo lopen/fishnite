@@ -4,28 +4,20 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    // player health
-    public int health = 3;
-    // max player health, can increase
-    private int maxHealth = 3;
-    // hard limit on how much maxHealth can increase
-    private int hardHealthLimit = 5;
+    public int health = 3; // Player health
+    private int maxHealth = 3; // Max player health, can increase
+    private int hardHealthLimit = 5; // Hard limit on how much maxHealth can increase
 
-    // healthmanager instance, for GUI hearts
-    private HealthManager healthManager;
+   
+    private HealthManager healthManager;  // Healthmanager instance, for GUI hearts
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update / Assigns health manager instance
     void Start()
     {
         healthManager = HealthManager.instance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    // increase health if below maxHealth
+    // Increase health if below maxHealth
     public void increaseHealth()
     {
         if (health < maxHealth)
@@ -35,7 +27,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // decrease health if its larger than 0
+    // Decrease health if its larger than 0
     public void decreaseHealth()
     {
         if (health > 0)
@@ -45,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // increase maxHealth, but not more than hard limit, also add GUI heart
+    // Increase maxHealth, but not more than hard limit, also add GUI heart
     public void increaseMaxHealth()
     {
         if (maxHealth < hardHealthLimit) {
@@ -54,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // decrease maxHealth, not really used much
+    // Decrease maxHealth, not really used much
     public void decreaseMaxHealth()
     {
         if (maxHealth > 0)
@@ -68,13 +60,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // get health
+    // Get health
     public int getHealth()
     {
         return health;
     }
 
-    // get max health
+    // Get max health
     public int getMaxHealth()
     {
         return maxHealth;

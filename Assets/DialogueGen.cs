@@ -11,7 +11,7 @@ public class DialogueGen : MonoBehaviour
     [SerializeField] private GameObject dialogueObject;
    
     float waitTime = 0.08f;
-    public string fullDialogue = "AMOGUS NEED FISH AAAA";
+    public string fullDialogue = "TRIG GIVE FISH";
     private string currentChar = "";
 
     private TMP_Text textMesh;
@@ -44,7 +44,7 @@ public class DialogueGen : MonoBehaviour
     }
 
     IEnumerator GenText() {
-        for (int i = 0; i < fullDialogue.Length; i++) {
+        for (int i = 0; i < fullDialogue.Length + 1; i++) {
             currentChar = fullDialogue.Substring(0,i);
             dialogueText.text = currentChar;
             speechAudio.pitch = Random.Range(1.0f, 3.0f);

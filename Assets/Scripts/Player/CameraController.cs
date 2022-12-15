@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // boat object
+    // Boat object
     public GameObject boat;
-    // camera offset
+    // Camera offset
     private Vector3 offset;
 
     // Start is called before the first frame update
@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
         offset = boat.transform.position - transform.position;
     }
 
+    // Called end of frame, follows boat with cam
     void LateUpdate() 
     {
         // rotate camera behind boat 
@@ -29,7 +30,4 @@ public class CameraController : MonoBehaviour
         transform.position = boat.transform.position - (rotation * offset);// - offset;
         transform.LookAt(boat.transform);
     }
-
-    // Update is called once per frame
-    void Update() { }
 }

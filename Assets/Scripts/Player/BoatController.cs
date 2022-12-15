@@ -5,29 +5,29 @@ using UnityEngine.UI;
 
 public class BoatController : MonoBehaviour
 {
-    // boat movement variables
+    // Boat movement variables
     public float speed = 11f; 
     public float turnSpeed = 4f;
     public float boostMultiplier = 1.6f;
 
-    // nitrus variables 
+    // Nitrus vars
     public float nitrusMeter = 0f;  // essentially just how many seconds of nitrus you have
     public float maxNitrus = 4f;    // max amount of nitrus possible to collect 
     private bool boosting = false;  // if the player is boosting / using nitrus
     private Image nitrusBar;          // the nitrus bar GUI element
 
-    // boat smoke and nitrus afterburner prefabs
+    // Particle system prefabs
     [SerializeField] private GameObject boatSmoke;
     [SerializeField] private GameObject boatAfterburner;
 
-    // audio itmes
+    // Audio items
     [SerializeField] private AudioSource afterburnAudio;
     [SerializeField] private AudioSource crashAudio;
     [SerializeField] private AudioSource hornAudio;
     [SerializeField] private AudioSource engineAudio;
     [SerializeField] private AudioSource waterAudio;
     
-    // boat rigidbody
+    // Boat rigidbody
     Rigidbody boatRigidbody;
 
     // player health
@@ -41,33 +41,42 @@ public class BoatController : MonoBehaviour
         nitrusBar = GameObject.FindGameObjectWithTag("NitrusMeter").GetComponent<Image>();
     }
 
+    // Update is called once per frame / Listens for user input
     void Update()
     {
-        // check if player is hitting nitrus button, !boosting and nitrus > 0 then run nitrus meter down
+        // Check if player is hitting nitrus button, !boosting and nitrus > 0 then run nitrus meter down
         if (Input.GetKeyDown(KeyCode.LeftShift) && !boosting && nitrusMeter > 0) {
             StartCoroutine(increaseSpeed(nitrusMeter));
         }
-        // if boosting then decrease fillAmount of nitrus bar over time
+        // If boosting then decrease fillAmount of nitrus bar over time
         if (boosting)
         {
             nitrusBar.fillAmount -= 0.25f * Time.deltaTime;
         }
-        // honk the horn
+        // Honk the horn
         if (Input.GetKeyDown("h") && !hornAudio.isPlaying) {
             hornAudio.Play();
         }
-        // boat audio    
-        if(boatRigidbody.velocity.magnitude > 0) {
+        // Boat audio    
+        if(boatRigidbody.velocity.magnitude > 0 && Time.timeScale == 1) {
             if(!engineAudio.isPlaying) {
+                engineAudio.enabled = true;
                 engineAudio.Play();
             }
 
             if(!waterAudio.isPlaying) {
+                waterAudio.enabled = true;
                 waterAudio.Play();
             }
         }
+
+        if (Time.timeScale == 0) {
+            engineAudio.enabled = false;
+            waterAudio.enabled = false;
+        }
     }
 
+    // FixedUpdate is called at the end of every frame / Assessments float info
     void FixedUpdate()
     {
         // movement
@@ -87,16 +96,19 @@ public class BoatController : MonoBehaviour
 
     }
 
+    // Moves based on float
     void move(float fb)
     {
         boatRigidbody.AddForce(this.transform.forward * fb * speed);
     }
 
+    // Turns based on float
     void turn(float lr)
     {
         boatRigidbody.AddTorque(this.transform.up * turnSpeed  * lr);
     }
 
+    // Add nitruous count
     public void addNitrus()
     {
         // add nitrus to our nitrus counter
@@ -106,7 +118,7 @@ public class BoatController : MonoBehaviour
         }
     }
 
-    // change player turn and movespeed and activate afterburner prefab
+    // Change player turn and movespeed and activate afterburner prefab
     IEnumerator increaseSpeed(float nitrus) 
     {
         boosting = true;
@@ -124,7 +136,7 @@ public class BoatController : MonoBehaviour
         boatSmoke.GetComponent<ParticleSystem>().Play();
     }
 
-    // if the player crashes into anything they will lose health
+    // If the player crashes into anything they will lose health
     void OnCollisionEnter(Collision collision)
     {
         playerHealth.decreaseHealth();

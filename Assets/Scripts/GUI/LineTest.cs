@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class LineTest : MonoBehaviour
 {
+    [SerializeField] private Transform[] points; // Array of transform points
+    [SerializeField] private LineController line; // Line to be drawn
 
-    [SerializeField] private Transform[] points;
-    [SerializeField] private LineController line;
+    // Start is called before the first frame update / Set up initial line from specified transform points
     private void Start() {
         line.SetUpLine(points);
     }

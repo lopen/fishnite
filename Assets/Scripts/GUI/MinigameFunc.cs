@@ -10,81 +10,79 @@ using Random=UnityEngine.Random;
 public class MinigameFunc : MonoBehaviour
 {
 
-    public delegate void MinigameStart();
-    public static event MinigameStart MinigameLaunch;
+    public delegate void MinigameStart(); // Event delegation for minigame being live, referenced in inventory
+    public static event MinigameStart MinigameLaunch; // Event for minigame being live, referenced in inventory
 
-    public delegate void MinigameEnd();
-    public static event MinigameEnd MinigameFinish;
+    public delegate void MinigameEnd(); // Event delegation for minigame being finished, referenced in inventory
+    public static event MinigameEnd MinigameFinish; // Event for minigame being finished, referenced in inventory
 
-    [SerializeField] private GameObject minigameRef;
-    [SerializeField] public Slider sliderUI;
-    [SerializeField] private GameObject sliderObject;
+    [SerializeField] private GameObject minigameRef; // Self reference for minigame, used for destroying following completion
+    [SerializeField] public Slider sliderUI; // Self reference for value slider, used for providing functionality to the minigame / Slightly unorthodox approach, but works well
+    [SerializeField] private GameObject sliderObject; // Self reference to slider object
 
-    [SerializeField] public GameObject hook;
-    [SerializeField] public GameObject hookPoint;
-    [SerializeField] private Animator playerAnims;
-    [SerializeField] private GameObject fishingLine;
+    [SerializeField] public GameObject hook; // Self reference to slider value object, aka 'the hook'
+    [SerializeField] public GameObject hookPoint; // Self reference to line connect point, placed in a sub-transform as to improve aesthetic
+    [SerializeField] private Animator playerAnims; // Fisherman player animations, found atop the minigame
+    [SerializeField] private GameObject fishingLine; // Reference to line renderer component used to tie between hookpoint and fisherman 'FishingPoint'
 
-    [SerializeField] private GameObject triggerZone;
-    [SerializeField] private GameObject triggerObject;
-    [SerializeField] private Transform triggerContainer;
+    [SerializeField] private GameObject triggerZone; // Zone of trigger for minigame success
+    [SerializeField] private GameObject triggerObject; // Object for trigger, uses a sprite mask to stay behind main fish sprite
+    [SerializeField] private Transform triggerContainer; // Container for holding trigger, bounds used as to generate within normal, expected ranges
 
-    [SerializeField] private GameObject lossScreen;
-    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject lossScreen; // Screen prompted when player loses the minigame
+    [SerializeField] private GameObject winScreen; // Screen prompted when player WINS the minigame
 
-    private GameObject trigger;
-    private bool fishmoving = false;
-    private float upDown = 0f;
+    private GameObject trigger; // Specific instantiated trigger, regenerated on success/fail of minigame
+    private float upDown = 0f; // Value used to determine direction of movement - translate cannot be performed outside of an Update/deltaTime function
     
-    private float sliderval;
-    private float sliderSpeed; 
+    private float sliderval; // Current value of slider
+    private float sliderSpeed; // Current speed of slider value movement, progresses in speed when getting near the end of our trigger container, then resets
 
-    private float sliderMin;
-    private float sliderMax;
-    private float triggerTest;
+    private float sliderMin; // Slider minimum X boundary - colliders could not be used with UI, so we generated a custom transform check as to determine when in the trigger zone
+    private float sliderMax; // Slider maximum X boundary
+    private float triggerTest; // Custom object used to trace speed of slider, used as a customer collider
 
-    private bool userClick;
-    private bool runSlider;
+    private bool userClick; // Status bool for on user click
+    private bool runSlider; // Status bool for slider running
 
-    private int raiseCount = 0;
-    private int failCount = 0;
+    private int raiseCount = 0; // Count for amount of successful hooks, determines success of minigame
+    private int failCount = 0; // Count for amount of failed hooks, determines loss
 
     // Inventory handling
     private PlayerInv playerInventory;
+    private bool fishmoving = false;
 
-    // Fish object
+    // Fish objects, used to provide player with fish for sale/points exchange 
     public List<ItemData> fishes;
     private ItemData fish;
+    
 
-
+    // Start is called before the first frame update / Handles initialising of slider and timescale halt
     void Start() {
         playerInventory = Player.instance.GetComponent<PlayerInv>();
         fish = fishes[Random.Range(0, fishes.Count)];
-        
-        // get image object
-        // assigned fish.imagesprite
-
+         
         runSlider = true;
         StartCoroutine(UpdateSliderVal());
         GenerateTrigger();
+
         Time.timeScale = 0;
         MinigameLaunch.Invoke();
     }
 
-    // Update is called once per frame
+    // Update is called once per frame / Handles useri nput checks, slider transform allocation and initial translate of slider/minigame
     void Update()
     {
         if (Input.GetKeyDown("space")) {
             userClick = true;
         } else if (Input.GetKeyUp("space")) {
-            print("keyup");
             userClick = false;
         }
         sliderMin = trigger.GetComponent<RectTransform>().localPosition.x;
         sliderMax = sliderMin + 10.5f;
 
         triggerTest = triggerObject.GetComponent<RectTransform>().localPosition.x;
-        if (fishmoving)
+        if (fishmoving == true)
         {
             sliderUI.transform.Translate(0f, upDown * 0.2f * Time.unscaledDeltaTime, 0f);
         }
@@ -123,6 +121,7 @@ public class MinigameFunc : MonoBehaviour
         }
     }
 
+    // Time wait co-routine, used due to Time.timeScale being 0 during run of initial co-routine, needed for resuming timescale.
     IEnumerator TimeWaitDestroy (float time) {
         yield return new WaitForSecondsRealtime(time);
         Destroy(minigameRef);
@@ -130,8 +129,8 @@ public class MinigameFunc : MonoBehaviour
         MinigameFinish.Invoke();
     }
 
+    // Called upon successful pass of minigame stage, sets animation, equivilent values and provides winning items
     private void ProgressStage() {
-        //sliderUI.transform.Translate(0f, 60f*Time.unscaledDeltaTime, 0f);
         fishmoving = true;
         upDown = 1;
         StartCoroutine(moveFish(1));
@@ -150,26 +149,26 @@ public class MinigameFunc : MonoBehaviour
 
             StartCoroutine(TimeWaitDestroy(3f));
         }
-        print(raiseCount);
     }
 
+    // Called upon failed attempt of minigame - user has two chances to fail, on their second the minigame is cancelled.
     private void DegressStage() {
         if (raiseCount > 0) {
             raiseCount--;
         }
 
-        if (failCount > 0)
-        {
+        if (failCount > 0) {
             fishmoving = true;
             upDown = -1;
             StartCoroutine(moveFish(1));
         }
+        
         failCount++;
         hook.SetActive(true);
 
         if (failCount >= 2) {
             runSlider = false;
-            //OnFailed();
+           
             lossScreen.SetActive(true);
             fishingLine.SetActive(false);
             playerAnims.SetBool("Failed", true);
@@ -179,15 +178,17 @@ public class MinigameFunc : MonoBehaviour
         } else if (failCount < 2) {
             runSlider = true;
         }
-
         sliderUI.value = 0f;
     }
+
+    // Co-routine for moving fish position outside of timescale
     IEnumerator moveFish(float time)
     {
         yield return new WaitForSecondsRealtime(time);
         fishmoving = false;
     }
 
+    // Method for generating trigger between random positions in container
     private void GenerateTrigger() {
         Destroy(trigger);
         trigger = Instantiate(triggerZone, triggerContainer) as GameObject;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // static player instance
+    // Static player instance
     public static Player instance;
 
     // Start is called before the first frame update
@@ -20,7 +20,4 @@ public class Player : MonoBehaviour
             Destroy(this);
         }
     }
-
-    // Update is called once per frame
-    void Update() { }
 }
